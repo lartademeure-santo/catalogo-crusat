@@ -45,11 +45,9 @@ body {
     aspect-ratio: 1 / 1.4142;
     position: relative;
     overflow: hidden;
-
     background-image: var(--imagen-principal);
     background-size: cover;
     background-position: center;
-
     box-shadow: 0 30px 60px rgba(0,0,0,0.35);
 }
 
@@ -63,23 +61,18 @@ body {
     height: 85%;
     top: 7.5%;
     left: 12.5%;
-
     background: linear-gradient(
         135deg,
         transparent 42px,
         var(--color-papel) 42px
     );
-
     padding: 55px 35px 75px 35px;
-
     display: flex;
     flex-direction: column;
-
     box-shadow:
         -1px 1px 0 rgba(255,255,255,0.6) inset,
         20px 30px 45px rgba(0,0,0,0.40),
         5px 10px 20px rgba(0,0,0,0.20);
-
     border-right: 1.5px solid rgba(0,0,0,0.12);
     border-bottom: 2px solid rgba(0,0,0,0.15);
 }
@@ -93,13 +86,11 @@ body {
     left: 0;
     width: 42px;
     height: 42px;
-
     background: linear-gradient(
         135deg,
         transparent 50%,
         var(--color-doblez) 50%
     );
-
     box-shadow: 5px 5px 8px rgba(0,0,0,0.18);
     pointer-events: none;
     z-index: 5;
@@ -216,12 +207,13 @@ body {
 }
 
 /* =====================================
-   GALERÍA — FOTOS DE 6 X 6 CM
+   GALERÍA DE OBRAS
+   PREVISUALIZACIONES CUADRADAS
 ===================================== */
 
 .galeria {
     display: grid;
-    grid-template-columns: repeat(2, 6cm);
+    grid-template-columns: repeat(2, minmax(0, 6cm));
     justify-content: center;
     gap: 15px;
     margin-top: 20px;
@@ -231,18 +223,14 @@ body {
 .tarjeta-obra {
     width: 6cm;
     height: 6cm;
-
     display: flex;
     flex-direction: column;
-
     overflow: hidden;
     background: white;
     border: 1px solid var(--borde);
     border-radius: 5px;
-
     text-decoration: none;
     color: inherit;
-
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     transition: transform 0.2s ease;
 }
@@ -252,6 +240,7 @@ body {
 }
 
 .tarjeta-obra img {
+    display: block;
     width: 100%;
     height: calc(6cm - 30px);
     object-fit: cover;
@@ -260,15 +249,20 @@ body {
 
 .info-obra {
     height: 30px;
+    flex-shrink: 0;
     padding: 3px 7px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-width: 0;
+    overflow: hidden;
 }
 
 .info-obra strong {
     font-size: 0.72rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .info-obra span {
@@ -284,6 +278,14 @@ body {
     color: #37352f;
     margin-top: 5px;
     margin-bottom: 15px;
+}
+
+.detalle-obra p {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 8px;
 }
 
 .detalle-obra a {
@@ -303,6 +305,11 @@ body {
 
     body {
         padding: 8px;
+        align-items: flex-start;
+    }
+
+    .lienzo-a4 {
+        width: 100%;
     }
 
     .hoja {
@@ -363,10 +370,8 @@ body {
 
 <div class="lienzo-a4">
 
-
 <!-- =====================================
      CAPA 2 — PÁGINA 1
-     INFORMATIONS ET BIOGRAPHIE
 ===================================== -->
 
 <section class="hoja" id="hoja1">
@@ -382,25 +387,13 @@ body {
 
             <h2>Informations sur l’œuvre</h2>
 
-            <p>
-                <strong>Titre :</strong>
-                Femme aux yeux fermés
-            </p>
+            <p><strong>Titre :</strong> Femme aux yeux fermés</p>
 
-            <p>
-                <strong>Artiste :</strong>
-                Roger Crusat (1917–1994)
-            </p>
+            <p><strong>Artiste :</strong> Roger Crusat (1917–1994)</p>
 
-            <p>
-                <strong>Année :</strong> 1955
-            </p>
+            <p><strong>Année :</strong> 1955</p>
 
-            <p>
-                <strong>Technique :</strong>
-                Pastel sur papier
-            </p>
-
+            <p><strong>Technique :</strong> Pastel sur papier</p>
 
             <h2>Présentation de l'œuvre</h2>
 
@@ -411,7 +404,6 @@ body {
                 Sa présentation iconographique sera enrichie à partir
                 de l’observation de l’œuvre originale.
             </p>
-
 
             <h2>L'artiste</h2>
 
@@ -427,7 +419,6 @@ body {
                 par son attachement à la culture catalane et
                 par la vie artistique parisienne.
             </p>
-
 
             <h2>Formation et parcours artistique</h2>
 
@@ -456,34 +447,24 @@ body {
                 au Japon et au Mexique.
             </p>
 
-            <div class="firma">
-                Roger Crusat
-            </div>
+            <div class="firma">Roger Crusat</div>
 
         </div>
     </div>
 
-
-    <!-- NAVIGATION -->
-
     <div class="navegacion">
-
         <button class="btn-flecha"
                 onclick="cambiarPagina(2)"
                 aria-label="Page suivante">
             →
         </button>
-
         <span class="indicador">01 / 02</span>
-
     </div>
 
 </section>
 
-
 <!-- =====================================
      CAPA 3 — PÁGINA 2
-     EXPOSITIONS ET GALERIE
 ===================================== -->
 
 <section class="hoja" id="hoja2">
@@ -496,9 +477,6 @@ body {
         </div>
 
         <div class="cuerpo">
-
-
-            <!-- EXPOSITIONS -->
 
             <h2>Expositions et distinctions</h2>
 
@@ -514,20 +492,16 @@ body {
 
             <ul>
                 <li>Galerie Roger, Lyon, 1946.</li>
-
                 <li>
                     Salon d’hiver, au Musée d’art moderne de la
                     Ville de Paris, en 1946, 1949 et 1950.
                 </li>
-
                 <li>Galerie Durand-Ruel, Paris, 1955.</li>
-
                 <li>
                     Galerie E.-J. Rivière, Paris,
                     1958 (octobre-novembre).
                 </li>
             </ul>
-
 
             <h2>Prix et récompenses</h2>
 
@@ -547,9 +521,6 @@ body {
                 à la scène artistique française du XXe siècle.
             </p>
 
-
-            <!-- GALERIE -->
-
             <h2>Galerie — Autres œuvres de Roger Crusat</h2>
 
             <p>
@@ -558,21 +529,19 @@ body {
                 de vente d’art.
             </p>
 
-
-            <div class="galerie">
-
+            <div class="galeria">
 
                 <!-- OBRA 1: GRAND BOUQUET -->
 
                 <div>
 
-                    <a href="galeria%201.jpg"
+                    <a href="Roger%20Crusat%20Grand%20Tableau%20Moderne%20Grand%20Bouquet%20Fleurs%20Rose.jpg"
                        target="_blank"
                        rel="noopener noreferrer"
                        class="tarjeta-obra">
 
                         <img
-                            src="galeria%201.jpg"
+                            src="Roger%20Crusat%20Grand%20Tableau%20Moderne%20Grand%20Bouquet%20Fleurs%20Rose.jpg"
                             alt="Grand Bouquet de fleurs">
 
                         <div class="info-obra">
@@ -586,9 +555,7 @@ body {
 
                         <strong>Grand Bouquet de fleurs — vers 1950</strong>
 
-                        <p>
-                            Huile sur toile.
-                        </p>
+                        <p>Huile sur toile.</p>
 
                         <p>
                             Œuvre attribuée à Roger Crusat,
@@ -603,7 +570,6 @@ body {
                     </div>
 
                 </div>
-
 
                 <!-- OBRA 2: POUPÉE 1925 -->
 
@@ -650,7 +616,6 @@ body {
 
                 </div>
 
-
                 <!-- OBRA 3: FEMME ASSISE -->
 
                 <div>
@@ -675,9 +640,7 @@ body {
 
                         <strong>Femme assise</strong>
 
-                        <p>
-                            Huile sur toile.
-                        </p>
+                        <p>Huile sur toile.</p>
 
                         <p>
                             Œuvre originale de Roger Crusat
@@ -699,40 +662,29 @@ body {
 
             </div>
 
-
-            <div class="firma">
-                Roger Crusat
-            </div>
+            <div class="firma">Roger Crusat</div>
 
         </div>
     </div>
 
-
-    <!-- NAVIGATION -->
-
     <div class="navegacion">
-
         <button class="btn-flecha"
                 onclick="cambiarPagina(1)"
                 aria-label="Page précédente">
             ←
         </button>
-
         <span class="indicador">02 / 02</span>
-
     </div>
 
 </section>
 
 </div>
 
-
 <!-- =====================================
      JAVASCRIPT — NAVIGATION ENTRE PAGES
 ===================================== -->
 
 <script>
-
 function cambiarPagina(numero) {
 
     const hoja1 = document.getElementById("hoja1");
@@ -753,12 +705,8 @@ function cambiarPagina(numero) {
         hoja2.querySelector(".contenido-scroll").scrollTop = 0;
 
     }
-
 }
-
 </script>
 
 </body>
-</html>
-
-
+</html> 
