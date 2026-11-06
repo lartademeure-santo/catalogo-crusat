@@ -1,109 +1,53 @@
 
-<!-- CAPA 2: PRIMERA HOJA — INFORMATIONS SUR L'ŒUVRE -->
+/* =========================================
+   GALERÍA DE OBRAS — PREVISUALIZACIONES GRANDES
+========================================= */
 
-<section class="hoja" id="hoja1">
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
 
-    <div class="contenido-scroll">
+.tarjeta-obra {
+    height: 115px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
 
-        <div class="encabezado">
-            Catalogue Raisonné<br>
-            Vol. I
-        </div>
+.tarjeta-obra:hover {
+    transform: scale(1.03);
+}
 
-        <div class="cuerpo">
+.tarjeta-obra img {
+    width: 100%;
+    height: 82px;
+    object-fit: cover;
+}
 
-            <h2>Informations sur l’œuvre</h2>
+.info-obra {
+    padding: 5px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
 
-            <p>
-                <strong>Titre :</strong> Femme aux yeux fermés
-            </p>
+.info-obra strong {
+    font-size: 0.72rem;
+}
 
-            <p>
-                <strong>Artiste :</strong> Roger Crusat (1917–1994)
-            </p>
+.info-obra span {
+    font-size: 0.63rem;
+    color: var(--texto-muted);
+}
 
-            <p>
-                <strong>Année :</strong> 1955
-            </p>
-
-            <p>
-                <strong>Technique :</strong> Pastel sur papier
-            </p>
-
-
-            <h2>Présentation de l'œuvre</h2>
-
-            <p>
-                Femme aux yeux fermés est une œuvre réalisée par
-                Roger Crusat en 1955, au pastel sur papier.
-                Elle témoigne d’un moment de son parcours artistique.
-                Sa présentation iconographique sera enrichie à partir
-                de l’observation de l’œuvre originale.
-            </p>
-
-
-            <h2>L'artiste</h2>
-
-            <p>
-                Roger Crusat (1917–1994) est un peintre,
-                lithographe et poète français d’identité catalane.
-                Né à Perpignan, il a développé une grande partie
-                de son parcours artistique à Paris, notamment
-                dans le quartier de Montmartre, où il a fréquenté
-                la cité d’artistes des Fusains.
-                Surnommé « le peintre catalan de Montmartre »,
-                il a construit une œuvre personnelle, nourrie
-                par son attachement à la culture catalane et
-                par la vie artistique parisienne.
-            </p>
-
-
-            <h2>Formation et parcours artistique</h2>
-
-            <p>
-                Roger Crusat se forme d’abord auprès d’André
-                Fons-Godail à l’École des beaux-arts de Perpignan.
-                Après sa mobilisation pendant la Seconde Guerre
-                mondiale, il poursuit ses études à Paris auprès
-                de René Jaudon, à l’École nationale supérieure
-                des beaux-arts. Dans sa jeunesse, il participe
-                également à une compagnie de ballet, pour laquelle
-                il réalise des costumes et des décors, tout en
-                pratiquant la danse.
-            </p>
-
-            <p>
-                Installé à Montmartre, notamment dans la cité
-                d’artistes des Fusains, il prend part à la vie
-                artistique parisienne. Il devient sociétaire
-                du Salon des Indépendants, du Salon d’Automne
-                et de la Société nationale des beaux-arts.
-                Son parcours comprend des expositions à Paris
-                et en région, ainsi que des présentations
-                à l’étranger, notamment à Genève et Bruxelles,
-                et dans des expositions collectives en Belgique,
-                au Japon et au Mexique.
-            </p>
-
-            <div class="firma">
-                Roger Crusat
-            </div>
-
-        </div>
-    </div>
-
-    <!-- NAVIGATION VERS LA COUCHE 3 -->
-
-    <div class="navegacion">
-
-        <button class="btn-flecha"
-                onclick="cambiarPagina(2)"
-                aria-label="Page suivante">
-            →
-        </button>
-
-        <span class="indicador">01 / 02</span>
-
-    </div>
-
-</section>
