@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Roger Crusat — Catálogo Interactivo Premium</title>
+<title>Roger Crusat — Catalogue Raisonné</title>
 
 <style>
 :root {
@@ -54,7 +54,7 @@ body {
 }
 
 /* =========================================
-   CAPAS 2 Y 3 — HOJAS SUPERPUESTAS
+   HOJAS SUPERPUESTAS
 ========================================= */
 
 .hoja {
@@ -164,6 +164,8 @@ body {
     line-height: 1.5;
 }
 
+/* TEXTOS */
+
 .cuerpo h2 {
     font-size: 1rem;
     text-transform: uppercase;
@@ -204,7 +206,7 @@ body {
 }
 
 /* =========================================
-   NAVEGACIÓN INFERIOR
+   NAVEGACIÓN
 ========================================= */
 
 .navegacion {
@@ -242,7 +244,7 @@ body {
 }
 
 /* =========================================
-   GALERÍA DE OBRAS
+   GALERÍA
 ========================================= */
 
 .galeria {
@@ -277,19 +279,35 @@ body {
     flex-direction: column;
     justify-content: center;
     min-width: 0;
+    gap: 4px;
 }
 
 .info-obra strong {
     font-size: 0.72rem;
+    line-height: 1.35;
 }
 
 .info-obra span {
     font-size: 0.63rem;
     color: var(--texto-muted);
+    line-height: 1.4;
+}
+
+/* FUENTES DOCUMENTALES */
+
+.sources {
+    font-size: 0.68rem !important;
+    line-height: 1.5 !important;
+    margin-top: 18px;
+}
+
+.sources a {
+    color: #555;
+    text-decoration: underline;
 }
 
 /* =========================================
-   VISOR DE FOTOGRAFÍAS AMPLIADAS
+   VISOR DE FOTOGRAFÍAS
 ========================================= */
 
 #visor-imagen {
@@ -353,6 +371,7 @@ body {
 ========================================= */
 
 @media (max-width: 600px) {
+
     body {
         padding: 8px;
     }
@@ -402,50 +421,52 @@ body {
 
 <body>
 
-<!-- CATÁLOGO -->
-
 <div class="lienzo-a4">
 
-    <!-- PRIMERA HOJA -->
+    <!-- PRIMERA PÁGINA -->
 
     <section class="hoja" id="hoja1">
 
         <div class="contenido-scroll">
 
             <div class="encabezado">
-                Catálogo Razonado<br>
+                Catalogue Raisonné<br>
                 Vol. I
             </div>
 
             <div class="cuerpo">
 
-                <h2>Presentación de la obra</h2>
+                <h2>Présentation de l'œuvre</h2>
 
                 <p>
-                    <strong>Retrato de hombre</strong> es una obra
-                    realizada por Roger Crusat en 1955.
-                    Trabajada al pastel sobre papel, esta pieza
-                    refleja una gran sensibilidad expresionista
-                    y una profunda introspección que enriquece
-                    el catálogo del artista.
+                    <strong>Femme aux yeux fermés</strong> est une œuvre
+                    réalisée par Roger Crusat en 1955, au pastel sur papier.
+                    Elle témoigne d’un moment de son parcours artistique.
+                    Sa présentation iconographique sera enrichie à partir
+                    de l’observation de l’œuvre originale.
                 </p>
 
-                <h2>El artista</h2>
+                <h2>L'artiste</h2>
 
                 <p>
-                    Aquí puedes incorporar la presentación
-                    biográfica de Roger Crusat, su trayectoria
-                    artística y los principales aspectos de su
-                    producción pictórica.
+                    Roger Crusat (1917–1994) est un peintre, lithographe
+                    et poète français d’identité catalane. Né à Perpignan,
+                    il a développé une grande partie de son parcours
+                    artistique à Paris, notamment dans le quartier de
+                    Montmartre, où il a fréquenté la cité d’artistes des
+                    Fusains. Surnommé « le peintre catalan de Montmartre »,
+                    il a construit une œuvre personnelle, nourrie par son
+                    attachement à la culture catalane et par la vie
+                    artistique parisienne.
                 </p>
 
-                <h2>Datos técnicos</h2>
+                <h2>Données techniques</h2>
 
                 <ul>
-                    <li>Artista: Roger Crusat</li>
-                    <li>Título: Retrato de hombre</li>
-                    <li>Fecha: 1955</li>
-                    <li>Técnica: Pastel sobre papel</li>
+                    <li>Artiste : Roger Crusat (1917–1994)</li>
+                    <li>Titre : Femme aux yeux fermés</li>
+                    <li>Date : 1955</li>
+                    <li>Technique : Pastel sur papier</li>
                 </ul>
 
                 <div class="firma">
@@ -458,7 +479,7 @@ body {
         <div class="navegacion">
             <button class="btn-flecha"
                     onclick="cambiarPagina(2)"
-                    aria-label="Ir a la segunda página">
+                    aria-label="Aller à la deuxième page">
                 →
             </button>
 
@@ -467,13 +488,11 @@ body {
 
     </section>
 
-    <!-- SEGUNDA HOJA -->
+    <!-- DEUXIÈME PAGE -->
 
     <section class="hoja" id="hoja2">
 
         <div class="contenido-scroll">
-
-            <!-- LOGO Y ESLOGAN EN LUGAR DEL ENCABEZADO ANTERIOR -->
 
             <div class="encabezado-marca">
 
@@ -489,78 +508,129 @@ body {
 
             <div class="cuerpo">
 
-                <h2>Biografía del pintor</h2>
+                <h2>Formation et parcours artistique</h2>
 
                 <p>
-                    Aquí incorporaremos el resto de la
-                    información biográfica de Roger Crusat.
-                    Este espacio está destinado a desarrollar
-                    su vida, formación, trayectoria y evolución
-                    artística.
+                    Roger Crusat se forme d’abord auprès d’André
+                    Fons-Godail à l’École des beaux-arts de Perpignan.
+                    Après sa mobilisation pendant la Seconde Guerre
+                    mondiale, il poursuit ses études à Paris auprès de
+                    René Jaudon, à l’École nationale supérieure des
+                    beaux-arts. Dans sa jeunesse, il participe également
+                    à une compagnie de ballet, pour laquelle il réalise
+                    des costumes et des décors, tout en pratiquant
+                    la danse.
                 </p>
-
-                <h2>Trayectoria artística</h2>
 
                 <p>
-                    Puedes incorporar aquí información sobre
-                    sus exposiciones, períodos creativos,
-                    influencias y principales acontecimientos
-                    de su carrera.
+                    Installé à Montmartre, notamment dans la cité
+                    d’artistes des Fusains, il prend part à la vie
+                    artistique parisienne. Il devient sociétaire du
+                    Salon des Indépendants, du Salon d’Automne et de
+                    la Société nationale des beaux-arts. Son parcours
+                    comprend des expositions à Paris et en région,
+                    ainsi que des présentations à l’étranger, notamment
+                    à Genève et Bruxelles, et dans des expositions
+                    collectives en Belgique, au Japon et au Mexique.
                 </p>
 
-                <h2>Lenguaje y estilo pictórico</h2>
+                <h2>Expositions et distinctions</h2>
 
                 <p>
-                    En esta sección se puede desarrollar
-                    el análisis de su lenguaje plástico,
-                    sus técnicas y las características
-                    fundamentales de su obra.
+                    Roger Crusat participe à plusieurs manifestations
+                    artistiques importantes au cours de sa carrière.
+                    Parmi les expositions et présentations documentées
+                    figurent notamment :
                 </p>
 
-                <h2>Obras y documentación</h2>
+                <ul>
+                    <li>Galerie Roger, Lyon, 1946.</li>
+                    <li>Salon d’hiver, au Musée d’art moderne de la Ville
+                        de Paris, en 1946, 1949 et 1950.</li>
+                    <li>Galerie Durand-Ruel, Paris, 1955.</li>
+                    <li>Galerie E.-J. Rivière, Paris, 1958.</li>
+                </ul>
+
+                <p>
+                    En 1956, il reçoit le Prix du Salon populiste pour
+                    son œuvre <em>Descente de gouttière</em>. En 1957,
+                    certaines sources mentionnent également le Grand
+                    Prix des Amis de Brantôme, dont la date reste
+                    à confirmer.
+                </p>
+
+                <p>
+                    Son parcours témoigne de sa participation active
+                    à la scène artistique française du XXe siècle.
+                </p>
+
+                <h2>Galerie — Autres œuvres de Roger Crusat</h2>
 
                 <div class="galeria">
 
-                    <a href="galeria%201.jpg"
+                    <a href="Roger%20Crusat%20Grand%20Tableau%20Moderne%20Grand%20Bouquet%20Fleurs%20Rose.jpg"
                        class="tarjeta-obra"
-                       onclick="abrirImagen(event, this.href)">
+                       onclick="ouvrirImage(event, this.href)">
 
-                        <img src="galeria%201.jpg" alt="Obra 1">
+                        <img src="Roger%20Crusat%20Grand%20Tableau%20Moderne%20Grand%20Bouquet%20Fleurs%20Rose.jpg"
+                             alt="Grand Bouquet de fleurs">
 
                         <div class="info-obra">
-                            <strong>Obra 1</strong>
-                            <span>Ver imagen</span>
+                            <strong>Grand Bouquet de fleurs</strong>
+                            <span>Vers 1950 · Huile sur toile</span>
+                            <span>Source : Proantic</span>
                         </div>
 
                     </a>
 
-                    <a href="galeria%202.jpg"
+                    <a href="Roger-CRUSAT-Femme-assise-.jpg"
                        class="tarjeta-obra"
-                       onclick="abrirImagen(event, this.href)">
+                       onclick="ouvrirImage(event, this.href)">
 
-                        <img src="galeria%202.jpg" alt="Obra 2">
+                        <img src="Roger-CRUSAT-Femme-assise-.jpg"
+                             alt="Poupée 1925">
 
                         <div class="info-obra">
-                            <strong>Obra 2</strong>
-                            <span>Ver imagen</span>
+                            <strong>Poupée 1925</strong>
+                            <span>Huile sur toile</span>
+                            <span>130,81 × 97,79 cm</span>
                         </div>
 
                     </a>
 
-                    <a href="galeria%203.jpg"
+                    <a href="mobilejpegupload_0CFF3C9F4ADC441B94D308FA944F56DA_master.jpg"
                        class="tarjeta-obra"
-                       onclick="abrirImagen(event, this.href)">
+                       onclick="ouvrirImage(event, this.href)">
 
-                        <img src="galeria%203.jpg" alt="Obra 3">
+                        <img src="mobilejpegupload_0CFF3C9F4ADC441B94D308FA944F56DA_master.jpg"
+                             alt="Femme assise">
 
                         <div class="info-obra">
-                            <strong>Obra 3</strong>
-                            <span>Ver imagen</span>
+                            <strong>Femme assise</strong>
+                            <span>Huile sur toile · Œuvre signée</span>
+                            <span>Roger Crusat (1917–1994)</span>
                         </div>
 
                     </a>
 
                 </div>
+
+                <p class="sources">
+                    <strong>Sources documentaires :</strong><br><br>
+
+                    Proantic — annonce commerciale pour
+                    <em>Grand Bouquet de fleurs</em>.<br><br>
+
+                    <a href="https://www.1stdibs.com/es/arte/pinturas/pinturas-figurativas/roger-crusat-gran-óleo-expresionista-francés-niña-poupèe-la-muñeca-escuela-de-parís/id-a_15114322/"
+                       target="_blank" rel="noopener">
+                        1stDibs — Poupée 1925
+                    </a><br><br>
+
+                    <a href="https://fr.artprice.com/place-de-marche/2208856/peinture/femme-assise"
+                       target="_blank" rel="noopener">
+                        Artprice — Femme assise
+                    </a>
+                </p>
 
                 <div class="firma">
                     Roger Crusat
@@ -573,7 +643,7 @@ body {
 
             <button class="btn-flecha"
                     onclick="cambiarPagina(1)"
-                    aria-label="Volver a la primera página">
+                    aria-label="Retour à la première page">
                 ←
             </button>
 
@@ -585,19 +655,19 @@ body {
 
 </div>
 
-<!-- VISOR DE IMÁGENES: FUERA DEL LIENZO A4 -->
+<!-- VISOR DES PHOTOGRAPHIES -->
 
 <div id="visor-imagen" onclick="cerrarImagen()">
 
     <button class="btn-cerrar"
             onclick="cerrarImagen()"
-            aria-label="Cerrar imagen">
+            aria-label="Fermer l'image">
         ×
     </button>
 
     <img id="imagen-ampliada"
          src=""
-         alt="Obra ampliada"
+         alt="Œuvre agrandie"
          onclick="event.stopPropagation()">
 
 </div>
@@ -620,9 +690,9 @@ function cambiarPagina(numero) {
     }
 }
 
-/* ABRIR OBRA EN LA MISMA PESTAÑA */
+/* OUVRIR UNE ŒUVRE DANS LA MÊME PAGE */
 
-function abrirImagen(event, ruta) {
+function ouvrirImage(event, ruta) {
 
     event.preventDefault();
 
@@ -633,7 +703,7 @@ function abrirImagen(event, ruta) {
     visor.classList.add("activo");
 }
 
-/* CERRAR OBRA Y VOLVER AL CATÁLOGO */
+/* FERMER L'IMAGE ET REVENIR AU CATALOGUE */
 
 function cerrarImagen() {
 
@@ -644,7 +714,7 @@ function cerrarImagen() {
     imagen.src = "";
 }
 
-/* CERRAR TAMBIÉN CON LA TECLA ESC */
+/* FERMER AVEC LA TOUCHE ÉCHAP */
 
 document.addEventListener("keydown", function(event) {
 
@@ -658,3 +728,4 @@ document.addEventListener("keydown", function(event) {
 
 </body>
 </html>
+
