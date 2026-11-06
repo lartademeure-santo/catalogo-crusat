@@ -1,46 +1,59 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roger Crusat — Exposition</title>
+    <title>Roger Crusat — Catálogo Razonado & Mockup</title>
     <style>
         :root {
-            /* Conexión directa con tus archivos reales de GitHub */
+            /* Conexión directa con tus imágenes locales PNG y JPEG de GitHub */
             --imagen-principal: url('principal.jpeg');
             --imagen-galeria1: url('galeria 1.jpg');
             --imagen-galeria2: url('galeria 2.jpg');
             --imagen-galeria3: url('galeria 3.jpg');
             
-            --bg-notion: #fbfbfa;
-            --texto-dark: #37352f;
-            --texto-muted: #787774;
-            --borde: #edeef0;
+            /* Ajustes del papel del mockup */
+            --color-ficha-a5: #e6e5e3;
+            --color-reverso-doblez: #ffffff;
+            
+            /* Colores oficiales estilo Notion */
+            --bg-notion-main: #ffffff;
+            --bg-notion-body: #fbfbfa;
+            --texto-notion-dark: #37352f;
+            --texto-notion-muted: #787774;
+            --borde-notion-light: #edeef0;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
-            background-color: #f0f0f0;
-            color: var(--texto-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-notion-body);
+            color: var(--texto-notion-dark);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 40px 20px;
         }
 
-        /* PÁGINA 1: MOCKUP EDITABLE CON PERSPECTIVA REAL */
-        .escena-3d-a4 {
+        /* ==========================================================================
+           PÁGINA 1: MOCKUP TRIDIMENSIONAL (OBRA A4 + FICHA SUPERPUESTA A5)
+           ========================================================================== */
+        .contenedor-lienzo-a4 {
             width: 100%;
-            max-width: 700px;
+            max-width: 750px;
+            height: auto;
             aspect-ratio: 1 / 1.4142;
             background-image: var(--imagen-principal);
             background-size: cover;
             background-position: center;
-            background-color: #222;
+            background-color: #1a1a1a;
             position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
             margin-bottom: 60px;
             overflow: hidden;
         }
@@ -49,19 +62,17 @@
             position: absolute;
             bottom: 8%;
             left: 8%;
-            width: 55%;
+            width: 54%;
             height: 62%;
-            background: linear-gradient(135deg, transparent 40px, #e4e4e4 40px);
+            background: linear-gradient(135deg, transparent 40px, var(--color-ficha-a5) 40px);
             transform: rotate(-3deg);
             padding: 50px 25px 25px 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            
-            /* Efecto de relieve y profundidad real en papel */
             box-shadow: 
-                -1px 1px 0px rgba(255, 255, 255, 0.6) inset,
-                15px 25px 35px rgba(0, 0, 0, 0.35),
+                -1px 1px 0px rgba(255, 255, 255, 0.5) inset,
+                15px 25px 35px rgba(0, 0, 0, 0.3),
                 4px 8px 15px rgba(0, 0, 0, 0.15);
             border-right: 1.5px solid rgba(0, 0, 0, 0.12);
             border-bottom: 2px solid rgba(0, 0, 0, 0.15);
@@ -69,7 +80,6 @@
             scrollbar-width: thin;
         }
 
-        /* Esquina doblada matemática */
         .ficha-a5-superpuesta::before {
             content: "";
             position: absolute;
@@ -77,111 +87,208 @@
             left: 0;
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, transparent 50%, #ffffff 50%);
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, transparent 50%, var(--color-reverso-doblez) 50%);
+            box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.18);
             border-bottom-right-radius: 3px;
             pointer-events: none;
         }
 
-        .ficha-meta { text-align: right; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 15px; }
-        .ficha-contenido h2 { font-size: 0.85rem; text-transform: uppercase; margin-bottom: 10px; color: #111; }
-        .ficha-contenido p { font-size: 0.85rem; line-height: 1.45; color: #333; text-align: justify; }
-        .ficha-autor { font-size: 2.2rem; font-weight: 300; line-height: 0.95; margin-top: 20px; color: #000; }
+        .ficha-encabezado {
+            text-align: right;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #555;
+            margin-bottom: 15px;
+        }
 
-        /* PÁGINA 2: INTERFAZ NOTION */
-        .contenedor-notion {
+        .ficha-contenido h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .ficha-contenido p {
+            font-size: 0.85rem;
+            line-height: 1.45;
+            color: #333;
+            text-align: justify;
+        }
+
+        .ficha-pie-firma {
+            font-size: 2.2rem;
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -1px;
+            color: #000;
+            margin-top: 20px;
+        }
+
+        /* ==========================================================================
+           PÁGINA 2: INFORMACIÓN COMPLETA ESTILO NOTION
+           ========================================================================== */
+        .contenedor-informacion-decoracion {
             width: 100%;
-            max-width: 700px;
-            background: #ffffff;
+            max-width: 750px;
+            background: var(--bg-notion-main);
             border-radius: 8px;
             padding: 50px 60px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid var(--borde);
+            border: 1px solid #edeef0;
         }
 
-        .notion-h1 { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
-        .notion-propiedades { display: grid; grid-template-columns: 120px 1fr; row-gap: 10px; font-size: 0.9rem; margin-bottom: 30px; border-bottom: 1px solid var(--borde); padding-bottom: 20px; }
-        .prop-key { color: var(--texto-muted); }
-        .notion-h2 { font-size: 1.25rem; font-weight: 600; margin: 25px 0 10px 0; }
-        .notion-p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px; text-align: justify; }
-        .notion-lista { margin-left: 20px; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.6; }
+        .seccion-titulo-notion {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f1f1f0;
+            padding-bottom: 8px;
+        }
 
-        /* Rejilla de Base de Datos Notion */
-        .grid-obras { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 20px; }
-        .tarjeta-obra { border: 1px solid var(--borde); border-radius: 6px; overflow: hidden; background: #fff; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
-        .preview-foto { width: 100%; height: 130px; background-size: cover; background-position: center; background-color: #f0f0f0; border-bottom: 1px solid var(--borde); }
-        .info-foto { padding: 12px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; }
-        .nombre-obra { font-size: 0.85rem; font-weight: 600; }
-        .detalles-obra { font-size: 0.75rem; color: var(--texto-muted); }
-        .enlace-externo { font-size: 0.75rem; color: #2383e2; margin-top: auto; }
-        .tarjeta-obra.vacia { border: 1px dashed #d3d2d0; background: #fafafa; display: flex; align-items: center; justify-content: center; height: 210px; color: #adacad; }
+        .bloque-texto {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: #37352f;
+            text-align: justify;
+        }
+
+        .subtitulo-bloque {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 30px 0 12px 0;
+            color: #111;
+        }
+
+        .lista-exposiciones {
+            margin-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .lista-exposiciones li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
+        .seccion-galeria-titulo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #787774;
+            margin: 40px 0 15px 0;
+            border-bottom: 1px solid var(--borde-notion-light);
+            padding-bottom: 8px;
+        }
+
+        .grid-obras {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 16px;
+        }
+
+        .tarjeta-obra {
+            border: 1px solid #edeef0;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fff;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.15s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-obra:hover {
+            background: #f9f9f9;
+        }
+
+        .preview-foto {
+            width: 100%;
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            background-color: #eaeaea;
+            border-bottom: 1px solid #edeef0;
+        }
+
+        .info-foto {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex-grow: 1;
+        }
+
+        .nombre-obra {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .detalles-obra {
+            font-size: 0.8rem;
+            color: #787774;
+        }
+
+        .enlace-externo {
+            font-size: 0.75rem;
+            color: #2383e2;
+            margin-top: auto;
+            padding-top: 6px;
+        }
+
+        .tarjeta-obra.vacia-placeholder {
+            border: 1px dashed #d3d2d0;
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 226px;
+            color: #adacad;
+        }
     </style>
 </head>
 <body>
 
-    <!-- PÁGINA 1 -->
-    <div class="escena-3d-a4">
+    <!-- PÁGINA 1: MOCKUP A4 CON FICHA SUPERPUESTA A5 -->
+    <div class="contenedor-lienzo-a4">
         <div class="ficha-a5-superpuesta">
             <div>
-                <div class="ficha-meta">Exposition<br>1955</div>
+                <div class="ficha-encabezado">
+                    Exposición<br>1955
+                </div>
                 <div class="ficha-contenido">
-                    <h2>Présentation de l'œuvre</h2>
-                    <p><strong>Femme aux yeux fermés</strong> est une œuvre réalisée par Roger Crusat en 1955, au pastel sur papier. Elle témoigne d’un moment de son parcours artistique.</p>
+                    <h2>Presentación de la obra</h2>
+                    <p>
+                        <strong>Retrato de hombre</strong> es una obra magistral realizada por Roger Crusat en 1955. Trabajada al pastel sobre papel, esta pieza refleja una gran sensibilidad expresionista y una profunda introspección que enriquece el catálogo del artista.
+                    </p>
                 </div>
             </div>
-            <div class="ficha-autor">Roger<br>Crusat</div>
+            <div class="ficha-pie-firma">
+                Roger<br>Crusat
+            </div>
         </div>
     </div>
 
-    <!-- PÁGINA 2 -->
-    <div class="contenedor-notion">
-        <h1 class="notion-h1">📄 Roger Crusat — Catalogue Raisonné</h1>
-        <div class="notion-propiedades">
-            <div class="prop-key">🎨 Technique</div><div>Pastel sur papier</div>
-            <div class="prop-key">📅 Date</div><div>1955</div>
-        </div>
+    <!-- PÁGINA 2: DATOS BIOGRÁFICOS Y GALERÍA ESTILO NOTION -->
+    <div class="contenedor-informacion-decoracion">
+        <h1 class="seccion-titulo-notion">📄 Roger Crusat — Catálogo Razonado</h1>
+        
+        <div class="subtitulo-bloque">El Artista</div>
+        <p class="bloque-texto">
+            Roger Crusat (1917–1994) es un pintor, litógrafo y poeta francés de identidad catalana. Nacido en Perpiñán, desarrolló gran parte de su trayectoria artística en París, especialmente en el barrio de Montmartre, donde frecuentó la famosa comunidad de artistas de Les Fusains. Apodado «el pintor catalán de Montmartre», construyó una obra muy personal, nutrida por su apego a la cultura catalana y la vida bohemia parisina.
+        </p>
 
-        <h2 class="notion-h2">L'Artiste</h2>
-        <p class="notion-p">Roger Crusat (1917–1994) est un peintre, lithographe et poète français d’identité catalane. Né à Perpignan, il a développé une grande partie de son parcours artistique à Paris, notamment dans le quartier de Montmartre.</p>
+        <div class="subtitulo-bloque">Formación y Trayectoria Artística</div>
+        <p class="bloque-texto">
+            Se formó inicialmente con André Fons-Godail en la Escuela de Bellas Artes de Perpiñán. Tras su movilización durante la Segunda Guerra Mundial, continuó sus estudios en París bajo la dirección de René Jaudon en la Escuela Nacional Superior de Bellas Artes. En su juventud, también formó parte de una compañía de ballet, diseñando vestuarios y decorados al mismo tiempo que practicaba la danza.
+        </p>
+        <p class="bloque-texto">
+            Establecido en Montmartre, participó activamente en la escena artística de la capital. Se convirtió en miembro del Salon des Indépendants, del Salon d’Automne y de la Société Nationale des Beaux-Arts.
+        </p>
 
-        <h2 class="notion-h2">Expositions et Distinctions</h2>
-        <ul class="notion-lista">
-            <li>Galerie Roger, Lyon, 1946.</li>
-            <li>Salon d’hiver, au Musée d’art moderne de la Ville de Paris.</li>
-            <li>Galerie Durand-Ruel, Paris, 1955.</li>
-            <li>En 1956, il reçoit le Prix du Salon populiste pour son œuvre Descente de gouttière.</li>
-        </ul>
+        <div class="subtitulo-bloque">Exposiciones y Distinciones</div>
 
-        <h2 class="notion-h2">🖼️ Galerie — Obras Complementarias</h2>
-        <div class="grid-obras">
-            <a href="https://proantic.com" target="_blank" class="tarjeta-obra">
-                <div class="preview-foto" style="background-image: var(--imagen-galeria1);"></div>
-                <div class="info-foto">
-                    <div class="nombre-obra">Grand Bouquet</div>
-                    <div class="detalles-obra">vers 1950 • Huile</div>
-                    <span class="enlace-externo">↗ Proantic</span>
-                </div>
-            </a>
-            <a href="https://1stdibs.com" target="_blank" class="tarjeta-obra">
-                <div class="preview-foto" style="background-image: var(--imagen-galeria2);"></div>
-                <div class="info-foto">
-                    <div class="nombre-obra">Poupée 1925</div>
-                    <div class="detalles-obra">130,81 × 97,79 cm</div>
-                    <span class="enlace-externo">↗ 1stDibs</span>
-                </div>
-            </a>
-            <a href="https://artprice.com" target="_blank" class="tarjeta-obra">
-                <div class="preview-foto" style="background-image: var(--imagen-galeria3);"></div>
-                <div class="info-foto">
-                    <div class="nombre-obra">Femme assise</div>
-                    <div class="detalles-obra">Huile / toile</div>
-                    <span class="enlace-externo">↗ Artprice</span>
-                </div>
-            </a>
-            <div class="tarjeta-obra vacia"><div>+ New</div></div>
-        </div>
-    </div>
-
-</body>
-</html> 
 
