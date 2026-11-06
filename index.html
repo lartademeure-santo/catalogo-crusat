@@ -1,509 +1,109 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CAPA 2: PRIMERA HOJA — INFORMATIONS SUR L'ŒUVRE -->
 
-<title>Roger Crusat — Catálogo Interactivo Premium</title>
+<section class="hoja" id="hoja1">
 
-<style>
-:root {
-    --imagen-principal: url('principal.jpeg');
-    --color-papel: #e6e5e3;
-    --color-doblez: #ffffff;
-    --texto-dark: #37352f;
-    --texto-muted: #787774;
-    --borde: #edeef0;
-}
+    <div class="contenido-scroll">
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #e5e5e5;
-    color: var(--texto-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-/* =========================================
-   CAPA 1 — LIENZO A4
-========================================= */
-
-.lienzo-a4 {
-    width: 100%;
-    max-width: 750px;
-    aspect-ratio: 1 / 1.4142;
-    position: relative;
-    overflow: hidden;
-
-    background-image: var(--imagen-principal);
-    background-size: cover;
-    background-position: center;
-
-    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
-}
-
-/* =========================================
-   CAPAS 2 Y 3 — HOJAS SUPERPUESTAS
-========================================= */
-
-.hoja {
-    position: absolute;
-
-    width: 75%;
-    height: 85%;
-
-    top: 7.5%;
-    left: 12.5%;
-
-    background: linear-gradient(
-        135deg,
-        transparent 42px,
-        var(--color-papel) 42px
-    );
-
-    padding: 55px 35px 75px 35px;
-
-    display: flex;
-    flex-direction: column;
-
-    box-shadow:
-        -1px 1px 0 rgba(255,255,255,0.6) inset,
-        20px 30px 45px rgba(0,0,0,0.40),
-        5px 10px 20px rgba(0,0,0,0.20);
-
-    border-right: 1.5px solid rgba(0,0,0,0.12);
-    border-bottom: 2px solid rgba(0,0,0,0.15);
-
-    transition: opacity 0.35s ease;
-}
-
-/* DOBLEZ DE PAPEL */
-
-.hoja::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 42px;
-    height: 42px;
-
-    background: linear-gradient(
-        135deg,
-        transparent 50%,
-        var(--color-doblez) 50%
-    );
-
-    box-shadow: 5px 5px 8px rgba(0,0,0,0.18);
-    pointer-events: none;
-    z-index: 5;
-}
-
-/* VISIBILIDAD DE LAS HOJAS */
-
-#hoja1 {
-    display: flex;
-}
-
-#hoja2 {
-    display: none;
-}
-
-/* =========================================
-   CONTENIDO INTERIOR
-========================================= */
-
-.contenido-scroll {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    padding-right: 8px;
-}
-
-.encabezado {
-    text-align: right;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #555;
-    margin-bottom: 25px;
-}
-
-.cuerpo h2 {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 23px;
-    margin-bottom: 10px;
-    color: #111;
-    border-bottom: 1px solid rgba(0,0,0,0.10);
-    padding-bottom: 5px;
-}
-
-.cuerpo h2:first-child {
-    margin-top: 0;
-}
-
-.cuerpo p,
-.cuerpo li {
-    font-size: 0.85rem;
-    line-height: 1.65;
-    color: #2b2b2b;
-    text-align: justify;
-    margin-bottom: 13px;
-}
-
-.cuerpo ul {
-    margin-left: 20px;
-    margin-bottom: 15px;
-}
-
-.firma {
-    font-size: 2.2rem;
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -1px;
-    color: #000;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-/* =========================================
-   NAVEGACIÓN INFERIOR
-========================================= */
-
-.navegacion {
-    position: absolute;
-    bottom: 17px;
-    left: 25px;
-
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    z-index: 10;
-}
-
-.btn-flecha {
-    background: none;
-    border: none;
-    font-size: 1.6rem;
-    color: #37352f;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.btn-flecha:hover {
-    color: #2383e2;
-    transform: scale(1.2);
-}
-
-.indicador {
-    font-size: 0.7rem;
-    color: #666;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-/* =========================================
-   GALERÍA DE OBRAS
-========================================= */
-
-.galeria {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 15px;
-}
-
-.tarjeta-obra {
-    height: 75px;
-    display: flex;
-    overflow: hidden;
-    background: white;
-    border: 1px solid var(--borde);
-    border-radius: 5px;
-    text-decoration: none;
-    color: inherit;
-}
-
-.tarjeta-obra img {
-    width: 70px;
-    height: 100%;
-    object-fit: cover;
-}
-
-.info-obra {
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 0;
-}
-
-.info-obra strong {
-    font-size: 0.72rem;
-}
-
-.info-obra span {
-    font-size: 0.63rem;
-    color: var(--texto-muted);
-}
-
-/* =========================================
-   ADAPTACIÓN A MÓVILES
-========================================= */
-
-@media (max-width: 600px) {
-    body {
-        padding: 8px;
-    }
-
-    .hoja {
-        width: 86%;
-        left: 7%;
-        height: 89%;
-        top: 5.5%;
-        padding: 38px 20px 65px 20px;
-    }
-
-    .cuerpo p,
-    .cuerpo li {
-        font-size: 0.78rem;
-    }
-
-    .cuerpo h2 {
-        font-size: 0.9rem;
-    }
-
-    .firma {
-        font-size: 1.8rem;
-    }
-
-    .navegacion {
-        left: 15px;
-        bottom: 10px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<!-- CAPA 1: FONDO A4 -->
-
-<div class="lienzo-a4">
-
-    <!-- CAPA 2: PRIMERA HOJA -->
-
-    <section class="hoja" id="hoja1">
-
-        <div class="contenido-scroll">
-
-            <div class="encabezado">
-                Catálogo Razonado<br>
-                Vol. I
-            </div>
-
-            <div class="cuerpo">
-
-                <h2>Presentación de la obra</h2>
-
-                <p>
-                    <strong>Retrato de hombre</strong> es una obra
-                    realizada por Roger Crusat en 1955.
-                    Trabajada al pastel sobre papel, esta pieza
-                    refleja una gran sensibilidad expresionista
-                    y una profunda introspección que enriquece
-                    el catálogo del artista.
-                </p>
-
-                <h2>El artista</h2>
-
-                <p>
-                    Aquí puedes incorporar la presentación
-                    biográfica de Roger Crusat, su trayectoria
-                    artística y los principales aspectos de su
-                    producción pictórica.
-                </p>
-
-                <h2>Datos técnicos</h2>
-
-                <ul>
-                    <li>Artista: Roger Crusat</li>
-                    <li>Título: Retrato de hombre</li>
-                    <li>Fecha: 1955</li>
-                    <li>Técnica: Pastel sobre papel</li>
-                </ul>
-
-                <div class="firma">
-                    Roger Crusat
-                </div>
-
-            </div>
+        <div class="encabezado">
+            Catalogue Raisonné<br>
+            Vol. I
         </div>
 
-        <div class="navegacion">
-            <button class="btn-flecha"
-                    onclick="cambiarPagina(2)"
-                    aria-label="Ir a la segunda página">
-                →
-            </button>
+        <div class="cuerpo">
 
-            <span class="indicador">01 / 02</span>
-        </div>
+            <h2>Informations sur l’œuvre</h2>
 
-    </section>
+            <p>
+                <strong>Titre :</strong> Femme aux yeux fermés
+            </p>
+
+            <p>
+                <strong>Artiste :</strong> Roger Crusat (1917–1994)
+            </p>
+
+            <p>
+                <strong>Année :</strong> 1955
+            </p>
+
+            <p>
+                <strong>Technique :</strong> Pastel sur papier
+            </p>
 
 
-    <!-- CAPA 3: SEGUNDA HOJA -->
+            <h2>Présentation de l'œuvre</h2>
 
-    <section class="hoja" id="hoja2">
+            <p>
+                Femme aux yeux fermés est une œuvre réalisée par
+                Roger Crusat en 1955, au pastel sur papier.
+                Elle témoigne d’un moment de son parcours artistique.
+                Sa présentation iconographique sera enrichie à partir
+                de l’observation de l’œuvre originale.
+            </p>
 
-        <div class="contenido-scroll">
 
-            <div class="encabezado">
-                Catálogo Razonado<br>
-                Vol. I — Continuación
+            <h2>L'artiste</h2>
+
+            <p>
+                Roger Crusat (1917–1994) est un peintre,
+                lithographe et poète français d’identité catalane.
+                Né à Perpignan, il a développé une grande partie
+                de son parcours artistique à Paris, notamment
+                dans le quartier de Montmartre, où il a fréquenté
+                la cité d’artistes des Fusains.
+                Surnommé « le peintre catalan de Montmartre »,
+                il a construit une œuvre personnelle, nourrie
+                par son attachement à la culture catalane et
+                par la vie artistique parisienne.
+            </p>
+
+
+            <h2>Formation et parcours artistique</h2>
+
+            <p>
+                Roger Crusat se forme d’abord auprès d’André
+                Fons-Godail à l’École des beaux-arts de Perpignan.
+                Après sa mobilisation pendant la Seconde Guerre
+                mondiale, il poursuit ses études à Paris auprès
+                de René Jaudon, à l’École nationale supérieure
+                des beaux-arts. Dans sa jeunesse, il participe
+                également à une compagnie de ballet, pour laquelle
+                il réalise des costumes et des décors, tout en
+                pratiquant la danse.
+            </p>
+
+            <p>
+                Installé à Montmartre, notamment dans la cité
+                d’artistes des Fusains, il prend part à la vie
+                artistique parisienne. Il devient sociétaire
+                du Salon des Indépendants, du Salon d’Automne
+                et de la Société nationale des beaux-arts.
+                Son parcours comprend des expositions à Paris
+                et en région, ainsi que des présentations
+                à l’étranger, notamment à Genève et Bruxelles,
+                et dans des expositions collectives en Belgique,
+                au Japon et au Mexique.
+            </p>
+
+            <div class="firma">
+                Roger Crusat
             </div>
 
-            <div class="cuerpo">
-
-                <h2>Biografía del pintor</h2>
-
-                <p>
-                    Aquí incorporaremos el resto de la
-                    información biográfica de Roger Crusat.
-                    Este espacio está destinado a desarrollar
-                    su vida, formación, trayectoria y evolución
-                    artística.
-                </p>
-
-                <h2>Trayectoria artística</h2>
-
-                <p>
-                    Puedes incorporar aquí información sobre
-                    sus exposiciones, períodos creativos,
-                    influencias y principales acontecimientos
-                    de su carrera.
-                </p>
-
-                <h2>Lenguaje y estilo pictórico</h2>
-
-                <p>
-                    En esta sección se puede desarrollar
-                    el análisis de su lenguaje plástico,
-                    sus técnicas y las características
-                    fundamentales de su obra.
-                </p>
-
-                <h2>Obras y documentación</h2>
-
-                <div class="galeria">
-
-                    <a href="galeria%201.jpg"
-                       target="_blank"
-                       class="tarjeta-obra">
-
-                        <img src="galeria%201.jpg"
-                             alt="Obra 1">
-
-                        <div class="info-obra">
-                            <strong>Obra 1</strong>
-                            <span>Ver imagen</span>
-                        </div>
-                    </a>
-
-                    <a href="galeria%202.jpg"
-                       target="_blank"
-                       class="tarjeta-obra">
-
-                        <img src="galeria%202.jpg"
-                             alt="Obra 2">
-
-                        <div class="info-obra">
-                            <strong>Obra 2</strong>
-                            <span>Ver imagen</span>
-                        </div>
-                    </a>
-
-                    <a href="galeria%203.jpg"
-                       target="_blank"
-                       class="tarjeta-obra">
-
-                        <img src="galeria%203.jpg"
-                             alt="Obra 3">
-
-                        <div class="info-obra">
-                            <strong>Obra 3</strong>
-                            <span>Ver imagen</span>
-                        </div>
-                    </a>
-
-                </div>
-
-                <div class="firma">
-                    Roger Crusat
-                </div>
-
-            </div>
         </div>
+    </div>
 
-        <div class="navegacion">
+    <!-- NAVIGATION VERS LA COUCHE 3 -->
 
-            <button class="btn-flecha"
-                    onclick="cambiarPagina(1)"
-                    aria-label="Volver a la primera página">
-                ←
-            </button>
+    <div class="navegacion">
 
-            <span class="indicador">02 / 02</span>
+        <button class="btn-flecha"
+                onclick="cambiarPagina(2)"
+                aria-label="Page suivante">
+            →
+        </button>
 
-        </div>
+        <span class="indicador">01 / 02</span>
 
-    </section>
+    </div>
 
-</div>
-
-
-<!-- JAVASCRIPT: CAMBIO DE CAPAS -->
-
-<script>
-
-function cambiarPagina(numero) {
-
-    const hoja1 = document.getElementById("hoja1");
-    const hoja2 = document.getElementById("hoja2");
-
-    if (numero === 1) {
-
-        hoja1.style.display = "flex";
-        hoja2.style.display = "none";
-
-    } else {
-
-        hoja1.style.display = "none";
-        hoja2.style.display = "flex";
-
-    }
-}
-
-</script>
-
-</body>
-</html>
-
-
-
+</section>
