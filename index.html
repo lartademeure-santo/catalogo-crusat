@@ -1,303 +1,509 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roger Crusat — Catálogo Interactivo Premium</title>
-    <style>
-        :root {
-            /* Conexión con tus imágenes locales en GitHub */
-            --imagen-principal: url('principal.jpeg');
-            --imagen-galeria1: url('galeria 1.jpg');
-            --imagen-galeria2: url('galeria 2.jpg');
-            --imagen-galeria3: url('galeria 3.jpg');
-            
-            /* Ajustes estéticos */
-            --color-ficha-a5: #e6e5e3;
-            --color-reverso-doblez: #ffffff;
-            --texto-dark: #37352f;
-            --texto-muted: #787774;
-            --borde: #edeef0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>Roger Crusat — Catálogo Interactivo Premium</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #e5e5e5;
-            color: var(--texto-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+<style>
+:root {
+    --imagen-principal: url('principal.jpeg');
+    --color-papel: #e6e5e3;
+    --color-doblez: #ffffff;
+    --texto-dark: #37352f;
+    --texto-muted: #787774;
+    --borde: #edeef0;
+}
 
-        /* ==========================================================================
-           CAPA 1 — LIENZO A4 PRINCIPAL
-           ========================================================================== */
-        .lienzo-a4-3d {
-            width: 100%;
-            max-width: 750px;
-            height: auto;
-            aspect-ratio: 1 / 1.4142; /* Proporción A4 estricta */
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-            overflow: hidden;
-            background-image: var(--imagen-principal);
-            background-size: cover;
-            background-position: center;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        /* ==========================================================================
-           CAPA 2 — FICHA GIGANTE (80% DE ANCHO Y RECTA)
-           ========================================================================== */
-        .ficha-a5-efecto-papel {
-            position: absolute;
-            bottom: 7%;
-            left: 10%;
-            width: 80%; /* Abarca el 80% del ancho del lienzo para máximo texto */
-            height: 86%; /* Abarca el 86% de alto para integrar toda la info */
-            
-            /* Corte diagonal exacto en la esquina superior izquierda para el doblez */
-            background: linear-gradient(135deg, transparent 45px, var(--color-ficha-a5) 45px);
-            padding: 60px 40px 60px 40px; /* Más espacio interno para que el texto use los laterales */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            
-            /* Sombra multinivel para el efecto de sobreborde y relieve físico */
-            box-shadow: 
-                -1px 1px 0px rgba(255, 255, 255, 0.6) inset,
-                20px 30px 45px rgba(0, 0, 0, 0.4),
-                5px 10px 20px rgba(0, 0, 0, 0.2);
-            
-            border-right: 1.5px solid rgba(0, 0, 0, 0.12);
-            border-bottom: 2px solid rgba(0, 0, 0, 0.15);
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #e5e5e5;
+    color: var(--texto-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
 
-        /* Doblez de la esquina superior izquierda */
-        .ficha-a5-efecto-papel::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, transparent 50%, var(--color-reverso-doblez) 50%);
-            box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.18);
-            border-bottom-right-radius: 3px;
-            pointer-events: none;
-            z-index: 10;
-        }
+/* =========================================
+   CAPA 1 — LIENZO A4
+========================================= */
 
-        /* Contenedores de las páginas internas */
-        .pagina-contenido {
-            display: none;
-            height: 100%;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+.lienzo-a4 {
+    width: 100%;
+    max-width: 750px;
+    aspect-ratio: 1 / 1.4142;
+    position: relative;
+    overflow: hidden;
 
-        .pagina-contenido.activa {
-            display: flex;
-        }
+    background-image: var(--imagen-principal);
+    background-size: cover;
+    background-position: center;
 
-        .scroll-interno {
-            overflow-y: auto;
-            scrollbar-width: thin;
-            padding-right: 10px;
-            flex-grow: 1;
-        }
+    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
 
-        .ficha-encabezado {
-            text-align: right;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #555;
-            margin-bottom: 20px;
-        }
+/* =========================================
+   CAPAS 2 Y 3 — HOJAS SUPERPUESTAS
+========================================= */
 
-        .ficha-cuerpo h2 {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: #111;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding-bottom: 4px;
-        }
-        
-        .ficha-cuerpo h2:first-child {
-            margin-top: 0;
-        }
+.hoja {
+    position: absolute;
 
-        .ficha-cuerpo p, .ficha-cuerpo li {
-            font-size: 0.88rem;
-            line-height: 1.6;
-            color: #2b2b2b;
-            text-align: justify;
-            margin-bottom: 12px;
-        }
+    width: 75%;
+    height: 85%;
 
-        .ficha-cuerpo ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
+    top: 7.5%;
+    left: 12.5%;
 
-        .ficha-pie-firma {
-            font-size: 2.4rem;
-            font-weight: 300;
-            line-height: 0.95;
-            letter-spacing: -1px;
-            color: #000;
-            margin-top: 20px;
-        }
+    background: linear-gradient(
+        135deg,
+        transparent 42px,
+        var(--color-papel) 42px
+    );
 
-        /* ==========================================================================
-           CONTROLES INTERACTIVOS (FLECHA INFERIOR IZQUIERDA)
-           ========================================================================== */
-        .control-navegacion {
-            position: absolute;
-            bottom: 20px;
-            left: 40px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 20;
-        }
+    padding: 55px 35px 75px 35px;
 
-        .btn-flecha {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: transform 0.2s ease, color 0.2s ease;
-            user-select: none;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    display: flex;
+    flex-direction: column;
 
-        .btn-flecha:hover {
-            color: #2383e2;
-            transform: scale(1.2);
-        }
-        
-        .indicador-pagina {
-            font-size: 0.75rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
+    box-shadow:
+        -1px 1px 0 rgba(255,255,255,0.6) inset,
+        20px 30px 45px rgba(0,0,0,0.40),
+        5px 10px 20px rgba(0,0,0,0.20);
 
-        /* ==========================================================================
-           GALERÍA COMPACTA (DENTRO DE LA PÁGINA 2)
-           ========================================================================== */
-        .grid-obras-interna {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 15px;
-        }
+    border-right: 1.5px solid rgba(0,0,0,0.12);
+    border-bottom: 2px solid rgba(0,0,0,0.15);
 
-        .tarjeta-obra-interna {
-            border: 1px solid var(--borde);
-            border-radius: 6px;
-            overflow: hidden;
-            background: #fff;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            height: 70px;
-            transition: background 0.15s ease;
-        }
+    transition: opacity 0.35s ease;
+}
 
-        .tarjeta-obra-interna:hover {
-            background: #f9f9f9;
-        }
+/* DOBLEZ DE PAPEL */
 
-        .preview-foto-interna {
-            width: 70px;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-color: #eaeaea;
-            flex-shrink: 0;
-        }
+.hoja::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 42px;
 
-        .info-foto-interna {
-            padding: 6px 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 2px;
-            overflow: hidden;
-        }
+    background: linear-gradient(
+        135deg,
+        transparent 50%,
+        var(--color-doblez) 50%
+    );
 
-        .nombre-obra-interna {
-            font-size: 0.75rem;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    box-shadow: 5px 5px 8px rgba(0,0,0,0.18);
+    pointer-events: none;
+    z-index: 5;
+}
 
-        .detalles-obra-interna {
-            font-size: 0.65rem;
-            color: var(--texto-muted);
-        }
+/* VISIBILIDAD DE LAS HOJAS */
 
-        .enlace-externo-interna {
-            font-size: 0.65rem;
-            color: #2383e2;
-            font-weight: 500;
-        }
+#hoja1 {
+    display: flex;
+}
 
-        .tarjeta-placeholder-interna {
-            border: 1px dashed #d3d2d0;
-            background: rgba(0,0,0,0.01);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 70px;
-            color: #adacad;
-            font-size: 0.75rem;
-            border-radius: 6px;
-        }
-    </style>
+#hoja2 {
+    display: none;
+}
+
+/* =========================================
+   CONTENIDO INTERIOR
+========================================= */
+
+.contenido-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding-right: 8px;
+}
+
+.encabezado {
+    text-align: right;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.cuerpo h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 23px;
+    margin-bottom: 10px;
+    color: #111;
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+    padding-bottom: 5px;
+}
+
+.cuerpo h2:first-child {
+    margin-top: 0;
+}
+
+.cuerpo p,
+.cuerpo li {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: #2b2b2b;
+    text-align: justify;
+    margin-bottom: 13px;
+}
+
+.cuerpo ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.firma {
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: #000;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* =========================================
+   NAVEGACIÓN INFERIOR
+========================================= */
+
+.navegacion {
+    position: absolute;
+    bottom: 17px;
+    left: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    z-index: 10;
+}
+
+.btn-flecha {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #37352f;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-flecha:hover {
+    color: #2383e2;
+    transform: scale(1.2);
+}
+
+.indicador {
+    font-size: 0.7rem;
+    color: #666;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* =========================================
+   GALERÍA DE OBRAS
+========================================= */
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.tarjeta-obra {
+    height: 75px;
+    display: flex;
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.tarjeta-obra img {
+    width: 70px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-obra {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.info-obra strong {
+    font-size: 0.72rem;
+}
+
+.info-obra span {
+    font-size: 0.63rem;
+    color: var(--texto-muted);
+}
+
+/* =========================================
+   ADAPTACIÓN A MÓVILES
+========================================= */
+
+@media (max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .hoja {
+        width: 86%;
+        left: 7%;
+        height: 89%;
+        top: 5.5%;
+        padding: 38px 20px 65px 20px;
+    }
+
+    .cuerpo p,
+    .cuerpo li {
+        font-size: 0.78rem;
+    }
+
+    .cuerpo h2 {
+        font-size: 0.9rem;
+    }
+
+    .firma {
+        font-size: 1.8rem;
+    }
+
+    .navegacion {
+        left: 15px;
+        bottom: 10px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- CAPA 1 — LIENZO A4 -->
-    <div class="lienzo-a4-3d">
-        
-        <!-- CAPA 2 — FICHA GIGANTE AL 80% RECTA -->
-        <div class="ficha-a5-efecto-papel">
-            
-            <!-- PÁGINA 1: PRESENTACIÓN Y BIOGRAFÍA -->
-            <div id="pag1" class="pagina-contenido activa">
-                <div class="scroll-interno">
-                    <div class="ficha-encabezado">
-                        Catálogo Razonado<br>Vol. I
-                    </div>
-                    <div class="ficha-cuerpo">
-                        <h2>Presentación de la obra</h2>
-                        <p>
-                            <strong>Retrato de hombre</strong> es una obra magistral realizada por Roger Crusat en 1955. Trabajada al pastel sobre papel, esta pieza refleja una gran sensibilidad expresionista y una profunda introspección que enriquece el catálogo del artista. Su presentación iconográfica será enriquecida a partir de la observación de la obra original.
-                        </p>
-                        
-                        <h2>El Artista</h2>
-                        <p>
+<!-- CAPA 1: FONDO A4 -->
+
+<div class="lienzo-a4">
+
+    <!-- CAPA 2: PRIMERA HOJA -->
+
+    <section class="hoja" id="hoja1">
+
+        <div class="contenido-scroll">
+
+            <div class="encabezado">
+                Catálogo Razonado<br>
+                Vol. I
+            </div>
+
+            <div class="cuerpo">
+
+                <h2>Presentación de la obra</h2>
+
+                <p>
+                    <strong>Retrato de hombre</strong> es una obra
+                    realizada por Roger Crusat en 1955.
+                    Trabajada al pastel sobre papel, esta pieza
+                    refleja una gran sensibilidad expresionista
+                    y una profunda introspección que enriquece
+                    el catálogo del artista.
+                </p>
+
+                <h2>El artista</h2>
+
+                <p>
+                    Aquí puedes incorporar la presentación
+                    biográfica de Roger Crusat, su trayectoria
+                    artística y los principales aspectos de su
+                    producción pictórica.
+                </p>
+
+                <h2>Datos técnicos</h2>
+
+                <ul>
+                    <li>Artista: Roger Crusat</li>
+                    <li>Título: Retrato de hombre</li>
+                    <li>Fecha: 1955</li>
+                    <li>Técnica: Pastel sobre papel</li>
+                </ul>
+
+                <div class="firma">
+                    Roger Crusat
+                </div>
+
+            </div>
+        </div>
+
+        <div class="navegacion">
+            <button class="btn-flecha"
+                    onclick="cambiarPagina(2)"
+                    aria-label="Ir a la segunda página">
+                →
+            </button>
+
+            <span class="indicador">01 / 02</span>
+        </div>
+
+    </section>
+
+
+    <!-- CAPA 3: SEGUNDA HOJA -->
+
+    <section class="hoja" id="hoja2">
+
+        <div class="contenido-scroll">
+
+            <div class="encabezado">
+                Catálogo Razonado<br>
+                Vol. I — Continuación
+            </div>
+
+            <div class="cuerpo">
+
+                <h2>Biografía del pintor</h2>
+
+                <p>
+                    Aquí incorporaremos el resto de la
+                    información biográfica de Roger Crusat.
+                    Este espacio está destinado a desarrollar
+                    su vida, formación, trayectoria y evolución
+                    artística.
+                </p>
+
+                <h2>Trayectoria artística</h2>
+
+                <p>
+                    Puedes incorporar aquí información sobre
+                    sus exposiciones, períodos creativos,
+                    influencias y principales acontecimientos
+                    de su carrera.
+                </p>
+
+                <h2>Lenguaje y estilo pictórico</h2>
+
+                <p>
+                    En esta sección se puede desarrollar
+                    el análisis de su lenguaje plástico,
+                    sus técnicas y las características
+                    fundamentales de su obra.
+                </p>
+
+                <h2>Obras y documentación</h2>
+
+                <div class="galeria">
+
+                    <a href="galeria%201.jpg"
+                       target="_blank"
+                       class="tarjeta-obra">
+
+                        <img src="galeria%201.jpg"
+                             alt="Obra 1">
+
+                        <div class="info-obra">
+                            <strong>Obra 1</strong>
+                            <span>Ver imagen</span>
+                        </div>
+                    </a>
+
+                    <a href="galeria%202.jpg"
+                       target="_blank"
+                       class="tarjeta-obra">
+
+                        <img src="galeria%202.jpg"
+                             alt="Obra 2">
+
+                        <div class="info-obra">
+                            <strong>Obra 2</strong>
+                            <span>Ver imagen</span>
+                        </div>
+                    </a>
+
+                    <a href="galeria%203.jpg"
+                       target="_blank"
+                       class="tarjeta-obra">
+
+                        <img src="galeria%203.jpg"
+                             alt="Obra 3">
+
+                        <div class="info-obra">
+                            <strong>Obra 3</strong>
+                            <span>Ver imagen</span>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="firma">
+                    Roger Crusat
+                </div>
+
+            </div>
+        </div>
+
+        <div class="navegacion">
+
+            <button class="btn-flecha"
+                    onclick="cambiarPagina(1)"
+                    aria-label="Volver a la primera página">
+                ←
+            </button>
+
+            <span class="indicador">02 / 02</span>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- JAVASCRIPT: CAMBIO DE CAPAS -->
+
+<script>
+
+function cambiarPagina(numero) {
+
+    const hoja1 = document.getElementById("hoja1");
+    const hoja2 = document.getElementById("hoja2");
+
+    if (numero === 1) {
+
+        hoja1.style.display = "flex";
+        hoja2.style.display = "none";
+
+    } else {
+
+        hoja1.style.display = "none";
+        hoja2.style.display = "flex";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
 
 
 
