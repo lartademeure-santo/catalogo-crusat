@@ -8,28 +8,6 @@
 <title>Roger Crusat — Catálogo Interactivo Premium</title>
 
 <style>
-    .encabezado-marca {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.logo-proyecto {
-    display: block;
-    max-width: 180px;
-    max-height: 100px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    margin: 0 auto 10px;
-}
-
-.eslogan {
-    font-size: 0.65rem;
-    letter-spacing: 1.5px;
-    text-align: center;
-    color: #555;
-    text-transform: uppercase;
-}
 :root {
     --imagen-principal: url('principal.jpeg');
     --color-papel: #e6e5e3;
@@ -81,10 +59,8 @@ body {
 
 .hoja {
     position: absolute;
-
     width: 75%;
     height: 85%;
-
     top: 7.5%;
     left: 12.5%;
 
@@ -160,6 +136,32 @@ body {
     letter-spacing: 2px;
     color: #555;
     margin-bottom: 25px;
+}
+
+/* LOGO Y ESLOGAN */
+
+.encabezado-marca {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-proyecto {
+    display: block;
+    max-width: 180px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 10px;
+}
+
+.eslogan {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    text-align: center;
+    color: #555;
+    text-transform: uppercase;
+    line-height: 1.5;
 }
 
 .cuerpo h2 {
@@ -259,6 +261,7 @@ body {
     border-radius: 5px;
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 .tarjeta-obra img {
@@ -284,6 +287,67 @@ body {
     font-size: 0.63rem;
     color: var(--texto-muted);
 }
+
+/* =========================================
+   VISOR DE FOTOGRAFÍAS AMPLIADAS
+========================================= */
+
+#visor-imagen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: rgba(0,0,0,0.92);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px 25px 25px;
+}
+
+#visor-imagen.activo {
+    display: flex;
+}
+
+#imagen-ampliada {
+    display: block;
+    max-width: 95%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.btn-cerrar {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+    color: #222;
+    border: none;
+    border-radius: 50%;
+
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.btn-cerrar:hover {
+    background: #e6e5e3;
+    transform: scale(1.08);
+}
+
 /* =========================================
    ADAPTACIÓN A MÓVILES
 ========================================= */
@@ -318,31 +382,40 @@ body {
         left: 15px;
         bottom: 10px;
     }
+
+    .logo-proyecto {
+        max-width: 150px;
+        max-height: 85px;
+    }
+
+    .eslogan {
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+    }
+
+    .tarjeta-obra img {
+        height: 140px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- CAPA 1: FONDO A4 -->
+<!-- CATÁLOGO -->
 
 <div class="lienzo-a4">
 
-    <!-- CAPA 2: PRIMERA HOJA -->
+    <!-- PRIMERA HOJA -->
 
     <section class="hoja" id="hoja1">
 
         <div class="contenido-scroll">
 
-            <div class="encabezado-marca">
-    <img src="litera%20logo.jpg"
-         alt="L'Art à Demeure"
-         class="logo-proyecto">
-
-    <div class="eslogan">
-        L'ART À DEMEURE — COLLECTION PRIVÉE CHEZ TOI
-    </div>
-</div>
+            <div class="encabezado">
+                Catálogo Razonado<br>
+                Vol. I
+            </div>
 
             <div class="cuerpo">
 
@@ -394,16 +467,24 @@ body {
 
     </section>
 
-
-    <!-- CAPA 3: SEGUNDA HOJA -->
+    <!-- SEGUNDA HOJA -->
 
     <section class="hoja" id="hoja2">
 
         <div class="contenido-scroll">
 
-            <div class="encabezado">
-                Catálogo Razonado<br>
-                Vol. I — Continuación
+            <!-- LOGO Y ESLOGAN EN LUGAR DEL ENCABEZADO ANTERIOR -->
+
+            <div class="encabezado-marca">
+
+                <img src="litera%20logo.jpg"
+                     alt="L'Art à Demeure"
+                     class="logo-proyecto">
+
+                <div class="eslogan">
+                    L'ART À DEMEURE — COLLECTION PRIVÉE CHEZ TOI
+                </div>
+
             </div>
 
             <div class="cuerpo">
@@ -442,44 +523,41 @@ body {
 
                     <a href="galeria%201.jpg"
                        class="tarjeta-obra"
-onclick="abrirImagen(event, this.href)">
-                       class="tarjeta-obra">
+                       onclick="abrirImagen(event, this.href)">
 
-                        <img src="galeria%201.jpg"
-                             alt="Obra 1">
+                        <img src="galeria%201.jpg" alt="Obra 1">
 
                         <div class="info-obra">
                             <strong>Obra 1</strong>
                             <span>Ver imagen</span>
                         </div>
+
                     </a>
 
                     <a href="galeria%202.jpg"
                        class="tarjeta-obra"
-onclick="abrirImagen(event, this.href)">"
-                       class="tarjeta-obra">
+                       onclick="abrirImagen(event, this.href)">
 
-                        <img src="galeria%202.jpg"
-                             alt="Obra 2">
+                        <img src="galeria%202.jpg" alt="Obra 2">
 
                         <div class="info-obra">
                             <strong>Obra 2</strong>
                             <span>Ver imagen</span>
                         </div>
+
                     </a>
 
                     <a href="galeria%203.jpg"
                        class="tarjeta-obra"
-onclick="abrirImagen(event, this.href)">
-                       class="tarjeta-obra">
+                       onclick="abrirImagen(event, this.href)">
 
-                        <img src="galeria%203.jpg"
-                             alt="Obra 3">
+                        <img src="galeria%203.jpg" alt="Obra 3">
 
                         <div class="info-obra">
                             <strong>Obra 3</strong>
                             <span>Ver imagen</span>
                         </div>
+
                     </a>
 
                 </div>
@@ -507,8 +585,24 @@ onclick="abrirImagen(event, this.href)">
 
 </div>
 
+<!-- VISOR DE IMÁGENES: FUERA DEL LIENZO A4 -->
 
-<!-- JAVASCRIPT: CAMBIO DE CAPAS -->
+<div id="visor-imagen" onclick="cerrarImagen()">
+
+    <button class="btn-cerrar"
+            onclick="cerrarImagen()"
+            aria-label="Cerrar imagen">
+        ×
+    </button>
+
+    <img id="imagen-ampliada"
+         src=""
+         alt="Obra ampliada"
+         onclick="event.stopPropagation()">
+
+</div>
+
+<!-- JAVASCRIPT -->
 
 <script>
 
@@ -518,19 +612,49 @@ function cambiarPagina(numero) {
     const hoja2 = document.getElementById("hoja2");
 
     if (numero === 1) {
-
         hoja1.style.display = "flex";
         hoja2.style.display = "none";
-
     } else {
-
         hoja1.style.display = "none";
         hoja2.style.display = "flex";
-
     }
 }
+
+/* ABRIR OBRA EN LA MISMA PESTAÑA */
+
+function abrirImagen(event, ruta) {
+
+    event.preventDefault();
+
+    const visor = document.getElementById("visor-imagen");
+    const imagen = document.getElementById("imagen-ampliada");
+
+    imagen.src = ruta;
+    visor.classList.add("activo");
+}
+
+/* CERRAR OBRA Y VOLVER AL CATÁLOGO */
+
+function cerrarImagen() {
+
+    const visor = document.getElementById("visor-imagen");
+    const imagen = document.getElementById("imagen-ampliada");
+
+    visor.classList.remove("activo");
+    imagen.src = "";
+}
+
+/* CERRAR TAMBIÉN CON LA TECLA ESC */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        cerrarImagen();
+    }
+
+});
 
 </script>
 
 </body>
-</html> 
+</html>
