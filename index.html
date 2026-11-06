@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roger Crusat — Catálogo Razonado & Mockup</title>
+    <title>Roger Crusat — Catálogo Interactivo Premium</title>
     <style>
         :root {
-            /* Conexión directa con tus imágenes locales PNG y JPEG de GitHub */
+            /* Conexión directa con tus imágenes locales en GitHub */
             --imagen-principal: url('principal.jpeg');
             --imagen-galeria1: url('galeria 1.jpg');
             --imagen-galeria2: url('galeria 2.jpg');
             --imagen-galeria3: url('galeria 3.jpg');
             
-            /* Ajustes del papel del mockup */
+            /* Variables estéticas del papel */
             --color-ficha-a5: #e6e5e3;
             --color-reverso-doblez: #ffffff;
-            
-            /* Colores oficiales estilo Notion */
-            --bg-notion-main: #ffffff;
-            --bg-notion-body: #fbfbfa;
-            --texto-notion-dark: #37352f;
-            --texto-notion-muted: #787774;
-            --borde-notion-light: #edeef0;
+            --texto-dark: #37352f;
+            --texto-muted: #787774;
+            --borde: #edeef0;
         }
 
         * {
@@ -32,55 +28,58 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-notion-body);
-            color: var(--texto-notion-dark);
+            background-color: #e5e5e5;
+            color: var(--texto-dark);
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
             padding: 40px 20px;
         }
 
         /* ==========================================================================
-           PÁGINA 1: MOCKUP TRIDIMENSIONAL (OBRA A4 + FICHA SUPERPUESTA A5)
+           CONTENEDOR A4 PRINCIPAL
            ========================================================================== */
-        .contenedor-lienzo-a4 {
+        .lienzo-a4-3d {
             width: 100%;
             max-width: 750px;
             height: auto;
-            aspect-ratio: 1 / 1.4142;
+            aspect-ratio: 1 / 1.4142; /* Relación A4 estricta */
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
             background-image: var(--imagen-principal);
             background-size: cover;
             background-position: center;
-            background-color: #1a1a1a;
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
-            margin-bottom: 60px;
-            overflow: hidden;
         }
 
-        .ficha-a5-superpuesta {
+        /* ==========================================================================
+           FICHA A5 SUPERPUESTA: RECTA, PARALELA Y OCUPANDO EL 60%
+           ========================================================================== */
+        .ficha-a5-efecto-papel {
             position: absolute;
-            bottom: 8%;
-            left: 8%;
-            width: 54%;
-            height: 62%;
+            bottom: 7%;
+            left: 7%;
+            width: 60%; /* Ocupa exactamente el 60% del ancho */
+            height: 68%;
+            /* Corte diagonal exacto a 135 grados para la esquina doblada */
             background: linear-gradient(135deg, transparent 40px, var(--color-ficha-a5) 40px);
-            transform: rotate(-3deg);
-            padding: 50px 25px 25px 25px;
+            padding: 55px 25px 50px 25px; /* Margen inferior extra para la flecha */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            
+            /* Sombra multinivel física para despegue del papel */
             box-shadow: 
-                -1px 1px 0px rgba(255, 255, 255, 0.5) inset,
-                15px 25px 35px rgba(0, 0, 0, 0.3),
+                -1px 1px 0px rgba(255, 255, 255, 0.6) inset,
+                15px 25px 35px rgba(0, 0, 0, 0.35),
                 4px 8px 15px rgba(0, 0, 0, 0.15);
             border-right: 1.5px solid rgba(0, 0, 0, 0.12);
             border-bottom: 2px solid rgba(0, 0, 0, 0.15);
-            overflow-y: auto;
-            scrollbar-width: thin;
         }
 
-        .ficha-a5-superpuesta::before {
+        /* Esquina doblada física y reverso visible */
+        .ficha-a5-efecto-papel::before {
             content: "";
             position: absolute;
             top: 0;
@@ -91,6 +90,22 @@
             box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.18);
             border-bottom-right-radius: 3px;
             pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Sistema de pestañas internas para simular el paso de página */
+        .pagina-contenido {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        /* La página activa se muestra */
+        .pagina-contenido.activa {
+            display: flex;
         }
 
         .ficha-encabezado {
@@ -102,19 +117,30 @@
             margin-bottom: 15px;
         }
 
-        .ficha-contenido h2 {
+        .ficha-cuerpo h2 {
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-top: 15px;
+            margin-bottom: 8px;
             color: #111;
         }
+        
+        .ficha-cuerpo h2:first-child {
+            margin-top: 0;
+        }
 
-        .ficha-contenido p {
-            font-size: 0.85rem;
+        .ficha-cuerpo p, .ficha-cuerpo li {
+            font-size: 0.8rem;
             line-height: 1.45;
             color: #333;
             text-align: justify;
+            margin-bottom: 8px;
+        }
+
+        .ficha-cuerpo ul {
+            margin-left: 15px;
+            margin-bottom: 10px;
         }
 
         .ficha-pie-firma {
@@ -127,168 +153,151 @@
         }
 
         /* ==========================================================================
-           PÁGINA 2: INFORMACIÓN COMPLETA ESTILO NOTION
+           CONTROLES INTERACTIVOS: FLECHA EN EL MARGEN INFERIOR IZQUIERDO
            ========================================================================== */
-        .contenedor-informacion-decoracion {
-            width: 100%;
-            max-width: 750px;
-            background: var(--bg-notion-main);
-            border-radius: 8px;
-            padding: 50px 60px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border: 1px solid #edeef0;
+        .control-navegacion {
+            position: absolute;
+            bottom: 15px;
+            left: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 20;
         }
 
-        .seccion-titulo-notion {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #f1f1f0;
-            padding-bottom: 8px;
-        }
-
-        .bloque-texto {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            color: #37352f;
-            text-align: justify;
-        }
-
-        .subtitulo-bloque {
+        .btn-flecha {
+            background: none;
+            border: none;
             font-size: 1.2rem;
-            font-weight: 600;
-            margin: 30px 0 12px 0;
-            color: #111;
+            cursor: pointer;
+            color: var(--texto-notion-dark);
+            transition: transform 0.2s ease, color 0.2s ease;
+            user-select: none;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .lista-exposiciones {
-            margin-left: 20px;
-            margin-bottom: 25px;
+        .btn-flecha:hover {
+            color: #2383e2;
+            transform: scale(1.15);
+        }
+        
+        .indicador-pagina {
+            font-size: 0.7rem;
+            color: var(--texto-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .lista-exposiciones li {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 6px;
-        }
-
-        .seccion-galeria-titulo {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #787774;
-            margin: 40px 0 15px 0;
-            border-bottom: 1px solid var(--borde-notion-light);
-            padding-bottom: 8px;
-        }
-
-        .grid-obras {
+        /* ==========================================================================
+           DISEÑO DE LA GALERÍA COMPACTA (DENTRO DE LA PÁGINA 2 DE LA FICHA)
+           ========================================================================== */
+        .grid-obras-interna {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-            gap: 16px;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 10px;
         }
 
-        .tarjeta-obra {
-            border: 1px solid #edeef0;
-            border-radius: 6px;
+        .tarjeta-obra-interna {
+            border: 1px solid var(--borde);
+            border-radius: 5px;
             overflow: hidden;
             background: #fff;
             text-decoration: none;
             color: inherit;
-            transition: background 0.15s ease;
             display: flex;
-            flex-direction: column;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            height: 75px;
         }
 
-        .tarjeta-obra:hover {
-            background: #f9f9f9;
-        }
-
-        .preview-foto {
-            width: 100%;
-            height: 140px;
+        .preview-foto-interna {
+            width: 80px;
+            height: 100%;
             background-size: cover;
             background-position: center;
             background-color: #eaeaea;
-            border-bottom: 1px solid #edeef0;
+            flex-shrink: 0;
         }
 
-        .info-foto {
-            padding: 12px;
+        .info-foto-interna {
+            padding: 8px 12px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            flex-grow: 1;
+            justify-content: center;
+            gap: 2px;
+            overflow: hidden;
         }
 
-        .nombre-obra {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .detalles-obra {
-            font-size: 0.8rem;
-            color: #787774;
-        }
-
-        .enlace-externo {
+        .nombre-obra-interna {
             font-size: 0.75rem;
-            color: #2383e2;
-            margin-top: auto;
-            padding-top: 6px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .tarjeta-obra.vacia-placeholder {
+        .detalles-obra-interna {
+            font-size: 0.65rem;
+            color: var(--texto-muted);
+        }
+
+        .enlace-externo-interna {
+            font-size: 0.65rem;
+            color: #2383e2;
+            font-weight: 500;
+        }
+
+        .tarjeta-placeholder-interna {
             border: 1px dashed #d3d2d0;
-            background: #fafafa;
+            background: rgba(0,0,0,0.01);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 226px;
+            height: 50px;
             color: #adacad;
+            font-size: 0.7rem;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- PÁGINA 1: MOCKUP A4 CON FICHA SUPERPUESTA A5 -->
-    <div class="contenedor-lienzo-a4">
-        <div class="ficha-a5-superpuesta">
-            <div>
-                <div class="ficha-encabezado">
-                    Exposición<br>1955
-                </div>
-                <div class="ficha-contenido">
-                    <h2>Presentación de la obra</h2>
-                    <p>
-                        <strong>Retrato de hombre</strong> es una obra magistral realizada por Roger Crusat en 1955. Trabajada al pastel sobre papel, esta pieza refleja una gran sensibilidad expresionista y una profunda introspección que enriquece el catálogo del artista.
-                    </p>
-                </div>
-            </div>
-            <div class="ficha-pie-firma">
-                Roger<br>Crusat
-            </div>
-        </div>
-    </div>
-
-    <!-- PÁGINA 2: DATOS BIOGRÁFICOS Y GALERÍA ESTILO NOTION -->
-    <div class="contenedor-informacion-decoracion">
-        <h1 class="seccion-titulo-notion">📄 Roger Crusat — Catálogo Razonado</h1>
+    <!-- LIENZO A4 PRINCIPAL -->
+    <div class="lienzo-a4-3d">
         
-        <div class="subtitulo-bloque">El Artista</div>
-        <p class="bloque-texto">
-            Roger Crusat (1917–1994) es un pintor, litógrafo y poeta francés de identidad catalana. Nacido en Perpiñán, desarrolló gran parte de su trayectoria artística en París, especialmente en el barrio de Montmartre, donde frecuentó la famosa comunidad de artistas de Les Fusains. Apodado «el pintor catalán de Montmartre», construyó una obra muy personal, nutrida por su apego a la cultura catalana y la vida bohemia parisina.
-        </p>
+        <!-- FICHA A5 CON PERSPECTIVA RECTA AL 60% -->
+        <div class="ficha-a5-efecto-papel">
+            
+            <!-- PARTE 1: PRESENTACIÓN DE LA OBRA -->
+            <div id="pag1" class="pagina-contenido activa">
+                <div>
+                    <div class="ficha-encabezado">
+                        Exposición<br>1955
+                    </div>
+                    <div class="ficha-cuerpo">
+                        <h2>Presentación de la obra</h2>
+                        <p>
+                            <strong>Retrato de hombre</strong> es una obra magistral realizada por Roger Crusat en 1955. Trabajada al pastel sobre papel, esta pieza refleja una gran sensibilidad expresionista y una profunda introspección que enriquece el catálogo del artista. Su presentación iconográfica será enriquecida a partir de la observación de la obra original.
+                        </p>
+                    </div>
+                </div>
+                <div class="ficha-pie-firma">
+                    Roger<br>Crusat
+                </div>
+            </div>
 
-        <div class="subtitulo-bloque">Formación y Trayectoria Artística</div>
-        <p class="bloque-texto">
-            Se formó inicialmente con André Fons-Godail en la Escuela de Bellas Artes de Perpiñán. Tras su movilización durante la Segunda Guerra Mundial, continuó sus estudios en París bajo la dirección de René Jaudon en la Escuela Nacional Superior de Bellas Artes. En su juventud, también formó parte de una compañía de ballet, diseñando vestuarios y decorados al mismo tiempo que practicaba la danza.
-        </p>
-        <p class="bloque-texto">
-            Establecido en Montmartre, participó activamente en la escena artística de la capital. Se convirtió en miembro del Salon des Indépendants, del Salon d’Automne y de la Société Nationale des Beaux-Arts.
-        </p>
+            <!-- PARTE 2: BIOGRAFÍA Y TRAYECTORIA -->
+            <div id="pag2" class="pagina-contenido">
+                <div>
+                    <div class="ficha-encabezado">
+                        Biografía<br>Roger Crusat
+                    </div>
+                    <div class="ficha-cuerpo">
+                        <h2>El Artista</h2>
+                        <p>
 
-        <div class="subtitulo-bloque">Exposiciones y Distinciones</div>
 
 
