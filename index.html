@@ -6,13 +6,13 @@
     <title>Roger Crusat — Catálogo Interactivo Premium</title>
     <style>
         :root {
-            /* Conexión directa con tus imágenes locales en GitHub */
+            /* Conexión con tus imágenes locales en GitHub */
             --imagen-principal: url('principal.jpeg');
             --imagen-galeria1: url('galeria 1.jpg');
             --imagen-galeria2: url('galeria 2.jpg');
             --imagen-galeria3: url('galeria 3.jpg');
             
-            /* Variables estéticas del papel */
+            /* Ajustes estéticos */
             --color-ficha-a5: #e6e5e3;
             --color-reverso-doblez: #ffffff;
             --texto-dark: #37352f;
@@ -34,19 +34,19 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         /* ==========================================================================
-           CONTENEDOR A4 PRINCIPAL
+           CAPA 1 — LIENZO A4 PRINCIPAL
            ========================================================================== */
         .lienzo-a4-3d {
             width: 100%;
             max-width: 750px;
             height: auto;
-            aspect-ratio: 1 / 1.4142; /* Relación A4 estricta */
+            aspect-ratio: 1 / 1.4142; /* Proporción A4 estricta */
             position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
             overflow: hidden;
             background-image: var(--imagen-principal);
             background-size: cover;
@@ -54,76 +54,84 @@
         }
 
         /* ==========================================================================
-           FICHA A5 SUPERPUESTA: RECTA, PARALELA Y OCUPANDO EL 60%
+           CAPA 2 — FICHA GIGANTE (80% DE ANCHO Y RECTA)
            ========================================================================== */
         .ficha-a5-efecto-papel {
             position: absolute;
             bottom: 7%;
-            left: 7%;
-            width: 60%; /* Ocupa exactamente el 60% del ancho */
-            height: 68%;
-            /* Corte diagonal exacto a 135 grados para la esquina doblada */
-            background: linear-gradient(135deg, transparent 40px, var(--color-ficha-a5) 40px);
-            padding: 55px 25px 50px 25px; /* Margen inferior extra para la flecha */
+            left: 10%;
+            width: 80%; /* Abarca el 80% del ancho del lienzo para máximo texto */
+            height: 86%; /* Abarca el 86% de alto para integrar toda la info */
+            
+            /* Corte diagonal exacto en la esquina superior izquierda para el doblez */
+            background: linear-gradient(135deg, transparent 45px, var(--color-ficha-a5) 45px);
+            padding: 60px 40px 60px 40px; /* Más espacio interno para que el texto use los laterales */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             
-            /* Sombra multinivel física para despegue del papel */
+            /* Sombra multinivel para el efecto de sobreborde y relieve físico */
             box-shadow: 
                 -1px 1px 0px rgba(255, 255, 255, 0.6) inset,
-                15px 25px 35px rgba(0, 0, 0, 0.35),
-                4px 8px 15px rgba(0, 0, 0, 0.15);
+                20px 30px 45px rgba(0, 0, 0, 0.4),
+                5px 10px 20px rgba(0, 0, 0, 0.2);
+            
             border-right: 1.5px solid rgba(0, 0, 0, 0.12);
             border-bottom: 2px solid rgba(0, 0, 0, 0.15);
         }
 
-        /* Esquina doblada física y reverso visible */
+        /* Doblez de la esquina superior izquierda */
         .ficha-a5-efecto-papel::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(135deg, transparent 50%, var(--color-reverso-doblez) 50%);
-            box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.18);
+            box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.18);
             border-bottom-right-radius: 3px;
             pointer-events: none;
             z-index: 10;
         }
 
-        /* Sistema de pestañas internas para simular el paso de página */
+        /* Contenedores de las páginas internas */
         .pagina-contenido {
             display: none;
             height: 100%;
             flex-direction: column;
             justify-content: space-between;
-            overflow-y: auto;
-            scrollbar-width: thin;
         }
 
-        /* La página activa se muestra */
         .pagina-contenido.activa {
             display: flex;
         }
 
+        .scroll-interno {
+            overflow-y: auto;
+            scrollbar-width: thin;
+            padding-right: 10px;
+            flex-grow: 1;
+        }
+
         .ficha-encabezado {
             text-align: right;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #555;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .ficha-cuerpo h2 {
-            font-size: 0.85rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 15px;
-            margin-bottom: 8px;
+            margin-top: 20px;
+            margin-bottom: 10px;
             color: #111;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding-bottom: 4px;
         }
         
         .ficha-cuerpo h2:first-child {
@@ -131,20 +139,20 @@
         }
 
         .ficha-cuerpo p, .ficha-cuerpo li {
-            font-size: 0.8rem;
-            line-height: 1.45;
-            color: #333;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #2b2b2b;
             text-align: justify;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .ficha-cuerpo ul {
-            margin-left: 15px;
-            margin-bottom: 10px;
+            margin-left: 20px;
+            margin-bottom: 15px;
         }
 
         .ficha-pie-firma {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 300;
             line-height: 0.95;
             letter-spacing: -1px;
@@ -153,24 +161,23 @@
         }
 
         /* ==========================================================================
-           CONTROLES INTERACTIVOS: FLECHA EN EL MARGEN INFERIOR IZQUIERDO
+           CONTROLES INTERACTIVOS (FLECHA INFERIOR IZQUIERDA)
            ========================================================================== */
         .control-navegacion {
             position: absolute;
-            bottom: 15px;
-            left: 25px;
+            bottom: 20px;
+            left: 40px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             z-index: 20;
         }
 
         .btn-flecha {
             background: none;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
-            color: var(--texto-notion-dark);
             transition: transform 0.2s ease, color 0.2s ease;
             user-select: none;
             padding: 5px;
@@ -181,40 +188,46 @@
 
         .btn-flecha:hover {
             color: #2383e2;
-            transform: scale(1.15);
+            transform: scale(1.2);
         }
         
         .indicador-pagina {
-            font-size: 0.7rem;
-            color: var(--texto-muted);
+            font-size: 0.75rem;
+            color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 600;
         }
 
         /* ==========================================================================
-           DISEÑO DE LA GALERÍA COMPACTA (DENTRO DE LA PÁGINA 2 DE LA FICHA)
+           GALERÍA COMPACTA (DENTRO DE LA PÁGINA 2)
            ========================================================================== */
         .grid-obras-interna {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .tarjeta-obra-interna {
             border: 1px solid var(--borde);
-            border-radius: 5px;
+            border-radius: 6px;
             overflow: hidden;
             background: #fff;
             text-decoration: none;
             color: inherit;
             display: flex;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-            height: 75px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            height: 70px;
+            transition: background 0.15s ease;
+        }
+
+        .tarjeta-obra-interna:hover {
+            background: #f9f9f9;
         }
 
         .preview-foto-interna {
-            width: 80px;
+            width: 70px;
             height: 100%;
             background-size: cover;
             background-position: center;
@@ -223,7 +236,7 @@
         }
 
         .info-foto-interna {
-            padding: 8px 12px;
+            padding: 6px 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -256,46 +269,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 50px;
+            height: 70px;
             color: #adacad;
-            font-size: 0.7rem;
-            border-radius: 5px;
+            font-size: 0.75rem;
+            border-radius: 6px;
         }
     </style>
 </head>
 <body>
 
-    <!-- LIENZO A4 PRINCIPAL -->
+    <!-- CAPA 1 — LIENZO A4 -->
     <div class="lienzo-a4-3d">
         
-        <!-- FICHA A5 CON PERSPECTIVA RECTA AL 60% -->
+        <!-- CAPA 2 — FICHA GIGANTE AL 80% RECTA -->
         <div class="ficha-a5-efecto-papel">
             
-            <!-- PARTE 1: PRESENTACIÓN DE LA OBRA -->
+            <!-- PÁGINA 1: PRESENTACIÓN Y BIOGRAFÍA -->
             <div id="pag1" class="pagina-contenido activa">
-                <div>
+                <div class="scroll-interno">
                     <div class="ficha-encabezado">
-                        Exposición<br>1955
+                        Catálogo Razonado<br>Vol. I
                     </div>
                     <div class="ficha-cuerpo">
                         <h2>Presentación de la obra</h2>
                         <p>
                             <strong>Retrato de hombre</strong> es una obra magistral realizada por Roger Crusat en 1955. Trabajada al pastel sobre papel, esta pieza refleja una gran sensibilidad expresionista y una profunda introspección que enriquece el catálogo del artista. Su presentación iconográfica será enriquecida a partir de la observación de la obra original.
                         </p>
-                    </div>
-                </div>
-                <div class="ficha-pie-firma">
-                    Roger<br>Crusat
-                </div>
-            </div>
-
-            <!-- PARTE 2: BIOGRAFÍA Y TRAYECTORIA -->
-            <div id="pag2" class="pagina-contenido">
-                <div>
-                    <div class="ficha-encabezado">
-                        Biografía<br>Roger Crusat
-                    </div>
-                    <div class="ficha-cuerpo">
+                        
                         <h2>El Artista</h2>
                         <p>
 
