@@ -339,24 +339,27 @@ body {
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-.btn-cerrar {
-    position: absolute;
-    top: 18px;
-    right: 22px;
-    width: 42px;
-    height: 42px;
+..btn-cerrar {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
-    color: #222;
-    border: none;
+    background: #ffffff;
+    color: #222222;
+    border: 2px solid #ffffff;
     border-radius: 50%;
-    font-size: 27px;
+    font-family: Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 400;
     line-height: 1;
     cursor: pointer;
-    z-index: 10000;
-}
+    z-index: 10001;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+} 
 
 @media (max-width: 600px) {
     body {
@@ -639,14 +642,18 @@ body {
 </div>
 
 <div id="visor-imagen" onclick="cerrarImagen()">
-    <button class="btn-cerrar"
-            onclick="cerrarImagen()"
+
+    <button type="button"
+            class="btn-cerrar"
+            onclick="event.stopPropagation(); cerrarImagen();"
             aria-label="Fermer l'image">×</button>
+
     <img id="imagen-ampliada"
          src=""
          alt="Œuvre agrandie"
          onclick="event.stopPropagation()">
-</div>
+
+</div> 
 
 <script>
 function cambiarPagina(numero) {
@@ -664,8 +671,10 @@ function cambiarPagina(numero) {
 
 function abrirImagen(event, ruta) {
     event.preventDefault();
+
     const visor = document.getElementById("visor-imagen");
     const imagen = document.getElementById("imagen-ampliada");
+
     imagen.src = ruta;
     visor.classList.add("activo");
 }
@@ -673,6 +682,7 @@ function abrirImagen(event, ruta) {
 function cerrarImagen() {
     const visor = document.getElementById("visor-imagen");
     const imagen = document.getElementById("imagen-ampliada");
+
     visor.classList.remove("activo");
     imagen.src = "";
 }
@@ -682,6 +692,6 @@ document.addEventListener("keydown", function(event) {
         cerrarImagen();
     }
 });
-</script>
+</script> 
 </body>
 </html>
