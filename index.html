@@ -4,14 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Roger Crusat — Catalogue Raisonné</title>
 
 <style>
 :root {
-    --imagen-principal: url('principal.jpeg');
+    --imagen-principal: url('fondo-index.jpeg');
     --color-papel: #e6e5e3;
-    --color-doblez: #ffffff;
     --texto-dark: #37352f;
     --texto-muted: #787774;
     --borde: #edeef0;
@@ -35,9 +33,7 @@ body {
     padding: 20px;
 }
 
-/* =========================================
-   CAPA 1 — LIENZO A4
-========================================= */
+/* LIENZO A4 */
 
 .lienzo-a4 {
     width: 100%;
@@ -45,17 +41,13 @@ body {
     aspect-ratio: 1 / 1.4142;
     position: relative;
     overflow: hidden;
-
     background-image: var(--imagen-principal);
     background-size: cover;
     background-position: center;
-
     box-shadow: 0 30px 60px rgba(0,0,0,0.35);
 }
 
-/* =========================================
-   HOJAS SUPERPUESTAS
-========================================= */
+/* HOJAS */
 
 .hoja {
     position: absolute;
@@ -63,30 +55,21 @@ body {
     height: 85%;
     top: 7.5%;
     left: 12.5%;
-
     background: linear-gradient(
         135deg,
         transparent 42px,
         var(--color-papel) 42px
     );
-
-    padding: 55px 35px 75px 35px;
-
+    padding: 45px 35px 85px;
     display: flex;
     flex-direction: column;
-
     box-shadow:
         -1px 1px 0 rgba(255,255,255,0.6) inset,
         20px 30px 45px rgba(0,0,0,0.40),
         5px 10px 20px rgba(0,0,0,0.20);
-
     border-right: 1.5px solid rgba(0,0,0,0.12);
     border-bottom: 2px solid rgba(0,0,0,0.15);
-
-    transition: opacity 0.35s ease;
 }
-
-/* DOBLEZ DE PAPEL */
 
 .hoja::before {
     content: "";
@@ -95,19 +78,15 @@ body {
     left: 0;
     width: 42px;
     height: 42px;
-
     background: linear-gradient(
         135deg,
         transparent 50%,
-        var(--color-doblez) 50%
+        #ffffff 50%
     );
-
     box-shadow: 5px 5px 8px rgba(0,0,0,0.18);
     pointer-events: none;
     z-index: 5;
 }
-
-/* VISIBILIDAD DE LAS HOJAS */
 
 #hoja1 {
     display: flex;
@@ -117,9 +96,7 @@ body {
     display: none;
 }
 
-/* =========================================
-   CONTENIDO INTERIOR
-========================================= */
+/* CONTENIDO */
 
 .contenido-scroll {
     flex: 1;
@@ -135,36 +112,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #555;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
-
-/* LOGO Y ESLOGAN */
-
-.encabezado-marca {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.logo-proyecto {
-    display: block;
-    max-width: 180px;
-    max-height: 100px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    margin: 0 auto 10px;
-}
-
-.eslogan {
-    font-size: 0.65rem;
-    letter-spacing: 1.5px;
-    text-align: center;
-    color: #555;
-    text-transform: uppercase;
-    line-height: 1.5;
-}
-
-/* TEXTOS */
 
 .cuerpo h2 {
     font-size: 1rem;
@@ -195,6 +144,66 @@ body {
     margin-bottom: 15px;
 }
 
+/* OBRA PRINCIPAL */
+
+.presentacion-principal {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.imagen-principal-obra {
+    display: block;
+    width: calc(100% + 70px);
+    height: 360px;
+    margin-left: -35px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.titulo-obra-principal {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    margin-top: 14px;
+    color: #222;
+}
+
+.detalle-obra-principal {
+    font-size: 0.72rem;
+    color: #777;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+/* LOGO Y ESLOGAN */
+
+.encabezado-marca {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-proyecto {
+    display: block;
+    max-width: 180px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 10px;
+}
+
+.eslogan {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    text-align: center;
+    color: #555;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+/* FIRMA */
+
 .firma {
     font-size: 2.2rem;
     font-weight: 300;
@@ -205,35 +214,38 @@ body {
     margin-bottom: 15px;
 }
 
-/* =========================================
-   NAVEGACIÓN
-========================================= */
+/* NAVEGACIÓN A LA DERECHA */
 
 .navegacion {
     position: absolute;
-    bottom: 17px;
-    left: 25px;
-
+    bottom: 16px;
+    right: 20px;
     display: flex;
     align-items: center;
     gap: 12px;
-
     z-index: 10;
 }
 
 .btn-flecha {
-    background: none;
-    border: none;
-    font-size: 1.6rem;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(0,0,0,0.18);
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 1;
     color: #37352f;
     cursor: pointer;
-    padding: 5px;
-    transition: transform 0.2s ease, color 0.2s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .btn-flecha:hover {
-    color: #2383e2;
-    transform: scale(1.2);
+    background: #fff;
+    transform: scale(1.08);
 }
 
 .indicador {
@@ -243,9 +255,7 @@ body {
     font-weight: 600;
 }
 
-/* =========================================
-   GALERÍA
-========================================= */
+/* GALERÍA */
 
 .galeria {
     display: grid;
@@ -278,7 +288,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 0;
     gap: 4px;
 }
 
@@ -293,7 +302,7 @@ body {
     line-height: 1.4;
 }
 
-/* FUENTES DOCUMENTALES */
+/* FUENTES */
 
 .sources {
     font-size: 0.68rem !important;
@@ -306,21 +315,16 @@ body {
     text-decoration: underline;
 }
 
-/* =========================================
-   VISOR DE FOTOGRAFÍAS
-========================================= */
+/* VISOR DE IMÁGENES */
 
 #visor-imagen {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 9999;
-
     background: rgba(0,0,0,0.92);
-
     align-items: center;
     justify-content: center;
-
     padding: 60px 25px 25px;
 }
 
@@ -342,33 +346,22 @@ body {
     position: absolute;
     top: 18px;
     right: 22px;
-
     width: 42px;
     height: 42px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: white;
     color: #222;
     border: none;
     border-radius: 50%;
-
     font-size: 27px;
     line-height: 1;
     cursor: pointer;
     z-index: 10000;
 }
 
-.btn-cerrar:hover {
-    background: #e6e5e3;
-    transform: scale(1.08);
-}
-
-/* =========================================
-   ADAPTACIÓN A MÓVILES
-========================================= */
+/* MÓVILES */
 
 @media (max-width: 600px) {
 
@@ -381,7 +374,17 @@ body {
         left: 7%;
         height: 89%;
         top: 5.5%;
-        padding: 38px 20px 65px 20px;
+        padding: 35px 20px 80px;
+    }
+
+    .imagen-principal-obra {
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        height: 260px;
+    }
+
+    .titulo-obra-principal {
+        font-size: 1.05rem;
     }
 
     .cuerpo p,
@@ -397,11 +400,6 @@ body {
         font-size: 1.8rem;
     }
 
-    .navegacion {
-        left: 15px;
-        bottom: 10px;
-    }
-
     .logo-proyecto {
         max-width: 150px;
         max-height: 85px;
@@ -414,6 +412,18 @@ body {
 
     .tarjeta-obra img {
         height: 140px;
+    }
+
+    .navegacion {
+        right: 12px;
+        bottom: 10px;
+        gap: 8px;
+    }
+
+    .btn-flecha {
+        width: 48px;
+        height: 48px;
+        font-size: 1.8rem;
     }
 }
 </style>
@@ -432,6 +442,22 @@ body {
             <div class="encabezado">
                 Catalogue Raisonné<br>
                 Vol. I
+            </div>
+
+            <div class="presentacion-principal">
+
+                <img src="cuadro.jpeg"
+                     alt="Femme aux yeux fermés — Roger Crusat"
+                     class="imagen-principal-obra">
+
+                <div class="titulo-obra-principal">
+                    Femme aux yeux fermés
+                </div>
+
+                <div class="detalle-obra-principal">
+                    ROGER CRUSAT · 1955
+                </div>
+
             </div>
 
             <div class="cuerpo">
@@ -469,26 +495,26 @@ body {
                     <li>Technique : Pastel sur papier</li>
                 </ul>
 
-                <div class="firma">
-                    Roger Crusat
-                </div>
+                <div class="firma">Roger Crusat</div>
 
             </div>
         </div>
 
         <div class="navegacion">
+
+            <span class="indicador">01 / 02</span>
+
             <button class="btn-flecha"
                     onclick="cambiarPagina(2)"
-                    aria-label="Aller à la deuxième page">
+                    aria-label="Page suivante">
                 →
             </button>
 
-            <span class="indicador">01 / 02</span>
         </div>
 
     </section>
 
-    <!-- DEUXIÈME PAGE -->
+    <!-- DEUXIÈME PÁGINA -->
 
     <section class="hoja" id="hoja2">
 
@@ -496,7 +522,7 @@ body {
 
             <div class="encabezado-marca">
 
-                <img src="litera%20logo.jpg"
+                <img src="logo.jpg"
                      alt="L'Art à Demeure"
                      class="logo-proyecto">
 
@@ -568,12 +594,12 @@ body {
 
                 <div class="galeria">
 
-                    <a href="Roger%20Crusat%20Grand%20Tableau%20Moderne%20Grand%20Bouquet%20Fleurs%20Rose.jpg"
+                    <a href="galeria%201.jpg"
                        class="tarjeta-obra"
-                       onclick="ouvrirImage(event, this.href)">
+                       onclick="abrirImagen(event, this.href)">
 
-                        <img src="Roger%20Crusat%20Grand%20Tableau%20Moderne%20Grand%20Bouquet%20Fleurs%20Rose.jpg"
-                             alt="Grand Bouquet de fleurs">
+                        <img src="galeria%201.jpg"
+                             alt="Œuvre de Roger Crusat">
 
                         <div class="info-obra">
                             <strong>Grand Bouquet de fleurs</strong>
@@ -583,11 +609,11 @@ body {
 
                     </a>
 
-                    <a href="Roger-CRUSAT-Femme-assise-.jpg"
+                    <a href="galeria%202.jpg"
                        class="tarjeta-obra"
-                       onclick="ouvrirImage(event, this.href)">
+                       onclick="abrirImagen(event, this.href)">
 
-                        <img src="Roger-CRUSAT-Femme-assise-.jpg"
+                        <img src="galeria%202.jpg"
                              alt="Poupée 1925">
 
                         <div class="info-obra">
@@ -598,11 +624,11 @@ body {
 
                     </a>
 
-                    <a href="mobilejpegupload_0CFF3C9F4ADC441B94D308FA944F56DA_master.jpg"
+                    <a href="galeria%203.jpg"
                        class="tarjeta-obra"
-                       onclick="ouvrirImage(event, this.href)">
+                       onclick="abrirImagen(event, this.href)">
 
-                        <img src="mobilejpegupload_0CFF3C9F4ADC441B94D308FA944F56DA_master.jpg"
+                        <img src="galeria%203.jpg"
                              alt="Femme assise">
 
                         <div class="info-obra">
@@ -632,22 +658,20 @@ body {
                     </a>
                 </p>
 
-                <div class="firma">
-                    Roger Crusat
-                </div>
+                <div class="firma">Roger Crusat</div>
 
             </div>
         </div>
 
         <div class="navegacion">
 
+            <span class="indicador">02 / 02</span>
+
             <button class="btn-flecha"
                     onclick="cambiarPagina(1)"
-                    aria-label="Retour à la première page">
+                    aria-label="Page précédente">
                 ←
             </button>
-
-            <span class="indicador">02 / 02</span>
 
         </div>
 
@@ -655,7 +679,7 @@ body {
 
 </div>
 
-<!-- VISOR DES PHOTOGRAPHIES -->
+<!-- VISOR DE FOTOGRAFÍAS -->
 
 <div id="visor-imagen" onclick="cerrarImagen()">
 
@@ -671,8 +695,6 @@ body {
          onclick="event.stopPropagation()">
 
 </div>
-
-<!-- JAVASCRIPT -->
 
 <script>
 
@@ -690,9 +712,7 @@ function cambiarPagina(numero) {
     }
 }
 
-/* OUVRIR UNE ŒUVRE DANS LA MÊME PAGE */
-
-function ouvrirImage(event, ruta) {
+function abrirImagen(event, ruta) {
 
     event.preventDefault();
 
@@ -703,8 +723,6 @@ function ouvrirImage(event, ruta) {
     visor.classList.add("activo");
 }
 
-/* FERMER L'IMAGE ET REVENIR AU CATALOGUE */
-
 function cerrarImagen() {
 
     const visor = document.getElementById("visor-imagen");
@@ -713,8 +731,6 @@ function cerrarImagen() {
     visor.classList.remove("activo");
     imagen.src = "";
 }
-
-/* FERMER AVEC LA TOUCHE ÉCHAP */
 
 document.addEventListener("keydown", function(event) {
 
@@ -728,4 +744,5 @@ document.addEventListener("keydown", function(event) {
 
 </body>
 </html>
+
 
