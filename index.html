@@ -478,3 +478,80 @@ p {
                         >
                         <h3>Femme assise</h3>
                         <p>Huile sur toile<br>Œuvre originale signée de Roger Crusat (1917–1994)</p>
+                        <a href="https://fr.artprice.com/place-de-marche/2208856/peinture/femme-assise" target="_blank" rel="noopener">
+                            Source : Artprice
+                        </a>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- NAVIGATION -->
+        <div class="navegacion">
+            <span class="indicador" id="indicador">1 / 2</span>
+            <button
+                class="boton-pagina"
+                id="botonSiguiente"
+                onclick="cambiarPagina()"
+                aria-label="Page suivante"
+            >→</button>
+        </div>
+
+    </main>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="cerrarImagen(event)">
+    <button class="cerrar-lightbox" onclick="cerrarImagen(event)" aria-label="Fermer">×</button>
+    <img id="imagenAmpliada" src="" alt="Œuvre agrandie">
+</div>
+
+<script>
+let paginaActual = 1;
+
+function cambiarPagina() {
+    paginaActual = paginaActual === 1 ? 2 : 1;
+
+    document.querySelectorAll(".pagina").forEach(function(pagina) {
+        pagina.classList.remove("activa");
+    });
+
+    document.getElementById("pagina" + paginaActual).classList.add("activa");
+
+    document.getElementById("indicador").textContent =
+        paginaActual + " / 2";
+
+    document.getElementById("botonSiguiente").textContent =
+        paginaActual === 1 ? "→" : "←";
+
+    document.querySelectorAll(".contenido-scroll").forEach(function(contenido) {
+        contenido.scrollTop = 0;
+    });
+}
+
+function abrirImagen(src) {
+    document.getElementById("imagenAmpliada").src = src;
+    document.getElementById("lightbox").classList.add("activo");
+}
+
+function cerrarImagen(event) {
+    if (
+        event.target.id === "lightbox" ||
+        event.target.classList.contains("cerrar-lightbox")
+    ) {
+        document.getElementById("lightbox").classList.remove("activo");
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.getElementById("lightbox").classList.remove("activo");
+    }
+});
+</script>
+
+</body>
+</html>
+```
