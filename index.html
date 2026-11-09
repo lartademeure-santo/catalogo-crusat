@@ -7,30 +7,6 @@
 <title>Roger Crusat — Catalogue Raisonné</title>
 
 <style>
-   .logo-proyecto {
-    display: block;
-    width: 18cm;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 6 / 1;
-    object-fit: contain;
-    margin: 0 auto 12px;
-} 
-
-    :root {
-        --imagen-principal: url("fondo-index.jpeg");
-        --color-papel: #e6e5e3;
-        --texto-dark: #37352f;
-        --texto-muted: #787774;
-        --borde: #edeef0;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-    
 :root {
     --imagen-principal: url("fondo-index.jpeg");
     --color-papel: #e6e5e3;
@@ -82,8 +58,12 @@ body {
     height: 85%;
     top: 7.5%;
     left: 12.5%;
-    background: linear-gradient(135deg, transparent 42px, var(--color-papel) 42px);
-    padding: 34px 30px 78px;
+    background: linear-gradient(
+        225deg,
+        transparent 42px,
+        var(--color-papel) 42px
+    );
+    padding: 48px 30px 78px;
     display: flex;
     flex-direction: column;
     box-shadow:
@@ -99,17 +79,27 @@ body {
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
+    left: auto;
     width: 42px;
     height: 42px;
-    background: linear-gradient(135deg, transparent 50%, #ffffff 50%);
-    box-shadow: 5px 5px 8px rgba(0,0,0,0.18);
+    background: linear-gradient(
+        225deg,
+        transparent 50%,
+        #ffffff 50%
+    );
+    box-shadow: -5px 5px 8px rgba(0,0,0,0.18);
     pointer-events: none;
     z-index: 5;
 }
 
-#hoja1 { display: flex; }
-#hoja2 { display: none; }
+#hoja1 {
+    display: flex;
+}
+
+#hoja2 {
+    display: none;
+}
 
 .contenido-scroll {
     position: relative;
@@ -126,41 +116,25 @@ body {
 
 /* BANNER DE IDENTIDAD */
 
- .encabezado-marca {
+.encabezado-marca {
     position: relative;
     z-index: 2;
+    display: block;
     width: 100%;
-    aspect-ratio: 4.8 / 1;
-    min-height: 76px;
-    max-height: 100px;
+    max-width: 18cm;
     margin: 0 auto 13px;
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 0;
+    border: 0;
     text-align: center;
-    border-top: 1px solid rgba(70, 57, 43, 0.35);
-    border-bottom: 1px solid rgba(70, 57, 43, 0.35);
 }
 
-.nom-projet {
-    font-family: "Baskerville", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-    font-size: clamp(1.05rem, 2.5vw, 1.55rem);
-    font-weight: 400;
-    letter-spacing: 2.2px;
-    line-height: 1.1;
-    color: #39332b;
-}
-
-.signature-projet {
-    margin-top: 7px;
-    font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    line-height: 1.2;
-    color: #746b60;
+.logo-proyecto {
+    display: block;
+    width: 100%;
+    max-width: 18cm;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
 .cuerpo h2 {
@@ -176,7 +150,9 @@ body {
     padding-bottom: 5px;
 }
 
-.cuerpo h2:first-child { margin-top: 0; }
+.cuerpo h2:first-child {
+    margin-top: 0;
+}
 
 .cuerpo p,
 .cuerpo li {
@@ -350,7 +326,9 @@ body {
     padding: 60px 25px 25px;
 }
 
-#visor-imagen.activo { display: flex; }
+#visor-imagen.activo {
+    display: flex;
+}
 
 #imagen-ampliada {
     display: block;
@@ -400,25 +378,11 @@ body {
         left: 6%;
         height: 90%;
         top: 5%;
-        padding: 27px 18px 72px;
+        padding: 42px 18px 72px;
     }
 
     .encabezado-marca {
-        min-height: 66px;
-        max-height: 82px;
         margin-bottom: 10px;
-        padding: 6px 8px;
-    }
-
-    .nom-projet {
-        font-size: 1.05rem;
-        letter-spacing: 1.5px;
-    }
-
-    .signature-projet {
-        font-size: 0.52rem;
-        letter-spacing: 1.5px;
-        margin-top: 5px;
     }
 
     .imagen-principal-obra {
@@ -426,7 +390,9 @@ body {
         height: 190px;
     }
 
-    .titulo-obra-principal { font-size: 0.9rem; }
+    .titulo-obra-principal {
+        font-size: 0.9rem;
+    }
 
     .cuerpo h2 {
         font-size: 0.68rem;
@@ -440,13 +406,25 @@ body {
         line-height: 1.45;
     }
 
-    .firma { font-size: 1.55rem; }
+    .firma {
+        font-size: 1.55rem;
+    }
 
-    .tarjeta-obra img { height: 125px; }
+    .tarjeta-obra img {
+        height: 125px;
+    }
 
-    .info-obra { padding: 6px; }
-    .info-obra strong { font-size: 0.62rem; }
-    .info-obra span { font-size: 0.55rem; }
+    .info-obra {
+        padding: 6px;
+    }
+
+    .info-obra strong {
+        font-size: 0.62rem;
+    }
+
+    .info-obra span {
+        font-size: 0.55rem;
+    }
 
     .navegacion {
         right: 10px;
@@ -469,16 +447,11 @@ body {
     <!-- PREMIÈRE PAGE -->
     <section class="hoja" id="hoja1">
         <div class="contenido-scroll">
-<div class="encabezado-marca">
-    <img src="./logo.jpg?v=3"
-         alt="L'Art à Demeure"
-         class="logo-proyecto">
 
-    
-</div> 
-            <div class="encabezado-marca" aria-label="L'Art à Demeure">
-                <div class="nom-projet">L’ART À DEMEURE</div>
-                <div class="signature-projet">L’ART ACCESSIBLE CHEZ TOI</div>
+            <div class="encabezado-marca">
+                <img src="./logo.jpg"
+                     alt="L'Art à Demeure"
+                     class="logo-proyecto">
             </div>
 
             <div class="presentacion-principal">
@@ -712,5 +685,4 @@ document.addEventListener("keydown", function(event) {
 });
 </script>
 </body>
-</html> 
-
+</html>
