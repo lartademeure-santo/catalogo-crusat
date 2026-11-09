@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -96,39 +97,24 @@ body {
     padding: 0 5px 8px 0;
 }
 
+/* BANNER DE IDENTIDAD */
+
 .encabezado-marca {
-    text-align: center;
-    margin: 0 auto 18px;
     width: 100%;
+    margin: 0 auto 18px;
+    text-align: center;
 }
 
 .logo-proyecto {
     display: block;
-    width: 205px;
-    max-width: 78%;
-    max-height: 112px;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 4.8 / 1;
     height: auto;
     object-fit: contain;
-    margin: 0 auto 9px;
+    object-position: center;
+    margin: 0 auto;
     background: transparent;
-} 
-    display: block;
-    width: 205px;
-    max-width: 78%;
-    max-height: 112px;
-    height: auto;
-    object-fit: contain;
-    margin: 0 auto 9px;
-    background: transparent;
-}
-
-.eslogan {
-    font-size: 0.62rem;
-    letter-spacing: 1.7px;
-    text-align: center;
-    color: #55514b;
-    text-transform: uppercase;
-    line-height: 1.5;
 }
 
 .cuerpo h2 {
@@ -170,15 +156,6 @@ body {
 }
 
 .imagen-principal-obra {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: 300px;
-    margin: 0 auto;
-    object-fit: contain;
-    object-position: center;
-    background: transparent;
-} 
     display: block;
     width: 100%;
     max-width: 100%;
@@ -283,12 +260,6 @@ body {
     height: 160px;
     object-fit: contain;
     background: transparent;
-} 
-    display: block;
-    width: 100%;
-    height: 160px;
-    object-fit: contain;
-    background: transparent;
 }
 
 .info-obra {
@@ -387,9 +358,9 @@ body {
     }
 
     .logo-proyecto {
-        width: 175px;
-        max-width: 82%;
-        max-height: 95px;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 4.8 / 1;
     }
 
     .imagen-principal-obra {
@@ -411,11 +382,6 @@ body {
     }
 
     .firma { font-size: 1.55rem; }
-
-    .eslogan {
-        font-size: 0.55rem;
-        letter-spacing: 1.1px;
-    }
 
     .tarjeta-obra img { height: 125px; }
 
@@ -446,15 +412,9 @@ body {
         <div class="contenido-scroll">
 
             <div class="encabezado-marca">
-    <img src="./logo.png"
-         <img src="./logo.png"
-     alt="L'Art à Demeure"
-     class="logo-proyecto"> 
-
-    <div class="eslogan">
-        
-    </div>
-</div> 
+                <img src="./logo-banner.png?v=2"
+                     alt="L'Art à Demeure — L'art accessible chez toi"
+                     class="logo-proyecto">
             </div>
 
             <div class="presentacion-principal">
@@ -689,3 +649,4 @@ document.addEventListener("keydown", function(event) {
 </script>
 </body>
 </html>
+
