@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,7 +8,7 @@
 <style>
 :root {
     --imagen-principal: url("fondo-index.jpeg");
-    --color-papel: #BFC0C2;
+    --color-papel: #E6E5E5;
     --texto-dark: #37352f;
     --texto-muted: #787774;
     --borde: #edeef0;
@@ -314,6 +313,8 @@ body {
     text-decoration: underline;
 }
 
+/* VISOR DE IMÁGENES AMPLIADAS */
+
 #visor-imagen {
     display: none;
     position: fixed;
@@ -339,7 +340,9 @@ body {
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-..btn-cerrar {
+/* BOTÓN DE CIERRE */
+
+.btn-cerrar {
     position: fixed;
     top: 20px;
     right: 24px;
@@ -359,7 +362,7 @@ body {
     cursor: pointer;
     z-index: 10001;
     box-shadow: 0 3px 12px rgba(0,0,0,0.4);
-} 
+}
 
 @media (max-width: 600px) {
     body {
@@ -451,7 +454,7 @@ body {
         <div class="contenido-scroll">
 
             <div class="encabezado-marca">
-                <img src="./logo.jpg"
+                <img src="./logo.png"
                      alt="L'Art à Demeure"
                      class="logo-proyecto">
             </div>
@@ -576,7 +579,7 @@ body {
 
                     <a href="./galeria%201.jpg"
                        class="tarjeta-obra"
-                       onclick="ouvrirImage(event, this.href)">
+                       onclick="abrirImagen(event, this.href)">
                         <img src="./galeria%201.jpg"
                              alt="Grand Bouquet de fleurs">
                         <div class="info-obra">
@@ -588,7 +591,7 @@ body {
 
                     <a href="./galeria%202.jpg"
                        class="tarjeta-obra"
-                       onclick="ouvrirImage(event, this.href)">
+                       onclick="abrirImagen(event, this.href)">
                         <img src="./galeria%202.jpg"
                              alt="Poupée 1925">
                         <div class="info-obra">
@@ -600,7 +603,7 @@ body {
 
                     <a href="./galeria%203.jpg"
                        class="tarjeta-obra"
-                       onclick="ouvrirImage(event, this.href)">
+                       onclick="abrirImagen(event, this.href)">
                         <img src="./galeria%203.jpg"
                              alt="Femme assise">
                         <div class="info-obra">
@@ -641,6 +644,7 @@ body {
     </section>
 </div>
 
+<!-- VISOR DE IMÁGENES -->
 <div id="visor-imagen" onclick="cerrarImagen()">
 
     <button type="button"
@@ -653,7 +657,7 @@ body {
          alt="Œuvre agrandie"
          onclick="event.stopPropagation()">
 
-</div> 
+</div>
 
 <script>
 function cambiarPagina(numero) {
@@ -692,6 +696,7 @@ document.addEventListener("keydown", function(event) {
         cerrarImagen();
     }
 });
-</script> 
+</script>
+
 </body>
 </html>
